@@ -55,12 +55,12 @@ public class DialogueGraph : EditorWindow
         toolbar.Add(fileNameTextField);
         
         // Save data button
-        toolbar.Add(new Button( () => SaveData())
+        toolbar.Add(new Button( () => RequestDataOperation(true))
             {text = "Save Data"}
         );
         
         // Load data button
-        toolbar.Add(new Button( () => LoadData())
+        toolbar.Add(new Button( () => RequestDataOperation(false))
             {text = "Load Data"}
         );
         
@@ -79,13 +79,28 @@ public class DialogueGraph : EditorWindow
         rootVisualElement.Remove(graphView);
     }
     
-    private void SaveData()
+    /// <summary>
+    /// Request save or load data
+    /// </summary>
+    /// <param name="save">Set to true to save, false to load</param>
+    private void RequestDataOperation(bool save)
     {
-        
-    }
+        // Check file name is null or empty
+        if (string.IsNullOrEmpty(fileName))
+        {
+            EditorUtility.DisplayDialog("Invalid file name!", "Please enter a valid name.", "OK");
+        }
 
-    private void LoadData()
-    {
+        var saveUtility = GraphSaveUtility.GetInstance(graphView);
         
+        // If save is true, then save the graph
+        if (save)
+        {
+            saveUtility.SaveGraph(fileName);
+        }
+        else // Else, load the graph
+        {
+            saveUtility.LoadGraph(fileName);
+        }
     }
 }
