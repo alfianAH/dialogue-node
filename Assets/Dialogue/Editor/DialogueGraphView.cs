@@ -10,9 +10,20 @@ public class DialogueGraphView : GraphView
     
     public DialogueGraphView()
     {
+        // Add style sheet for grid
+        styleSheets.Add(Resources.Load<StyleSheet>("DialogueGraph"));
+        
+        // Zoom in and out
+        SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
+        
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
+        
+        // Add grid
+        var grid = new GridBackground();
+        Insert(0, grid);
+        grid.StretchToParentSize();
         
         AddElement(GenerateEntryPointNode());
     }
