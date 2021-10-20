@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class DialogueGraph : EditorWindow
 {
     private DialogueGraphView graphView;
+    private string fileName = "New Narrative";
     
     /// <summary>
     /// Open dialogue graph window from menu "Graph/Dialogue Graph"
@@ -46,15 +47,29 @@ public class DialogueGraph : EditorWindow
     private void GenerateToolbar()
     {
         var toolbar = new Toolbar();
+        var fileNameTextField = new TextField("File Name:");
+        fileNameTextField.SetValueWithoutNotify(fileName);
+        fileNameTextField.MarkDirtyRepaint();
+        fileNameTextField.RegisterValueChangedCallback(evt => fileName = evt.newValue);
+        
+        toolbar.Add(fileNameTextField);
+        
+        // Save data button
+        toolbar.Add(new Button( () => SaveData())
+            {text = "Save Data"}
+        );
+        
+        // Load data button
+        toolbar.Add(new Button( () => LoadData())
+            {text = "Load Data"}
+        );
         
         // Add button to create new node
         var nodeCreateButton = new Button(() =>
         {
             graphView.CreateNode("Dialogue Node");
-        });
-        
-        nodeCreateButton.text = "Create Node";
-        
+        }) {text = "Create Node"};
+
         toolbar.Add(nodeCreateButton);
         rootVisualElement.Add(toolbar);
     }
@@ -62,5 +77,15 @@ public class DialogueGraph : EditorWindow
     private void OnDisable()
     {
         rootVisualElement.Remove(graphView);
+    }
+    
+    private void SaveData()
+    {
+        
+    }
+
+    private void LoadData()
+    {
+        
     }
 }
