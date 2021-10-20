@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,7 +16,26 @@ public class DialogueGraphView : GraphView
         
         AddElement(GenerateEntryPointNode());
     }
-    
+
+    /// <summary>
+    /// Get compatible ports
+    /// </summary>
+    /// <param name="startPort"></param>
+    /// <param name="nodeAdapter"></param>
+    /// <returns>Compatible ports</returns>
+    public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+    {
+        var compatiblePorts = new List<Port>();
+
+        ports.ForEach(port =>
+        {
+            if (startPort != port && startPort.node != port.node)
+                compatiblePorts.Add(port);
+        });
+
+        return compatiblePorts;
+    }
+
     /// <summary>
     /// Generate port in the node
     /// </summary>
