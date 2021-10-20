@@ -13,16 +13,22 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   nodeLinks:
-  - baseNodeGuid: 626268b3-ce5e-44c4-a2c9-6ac4810d0795
+  - baseNodeGuid: 483f6c2a-0c16-43b2-a8d2-edbf453920e9
     portName: Next
-    targetNodeGuid: d9c4bbb2-45d2-494b-bcce-c1a4650b812a
-  - baseNodeGuid: d9c4bbb2-45d2-494b-bcce-c1a4650b812a
-    portName: Choice 0
-    targetNodeGuid: 536d3de0-b981-4b16-bc30-40e3f3a86a26
+    targetNodeGuid: 4cbe9f48-9018-45dc-b04a-9967d3c38bc3
+  - baseNodeGuid: 4cbe9f48-9018-45dc-b04a-9967d3c38bc3
+    portName: Choice 1
+    targetNodeGuid: bdb80ed0-d1c2-450d-9007-0c0c44648497
+  - baseNodeGuid: 4cbe9f48-9018-45dc-b04a-9967d3c38bc3
+    portName: Choice 3
+    targetNodeGuid: bdb80ed0-d1c2-450d-9007-0c0c44648497
   dialogueNodeDatas:
-  - guid: d9c4bbb2-45d2-494b-bcce-c1a4650b812a
+  - guid: bdb80ed0-d1c2-450d-9007-0c0c44648497
     dialogueText: Dialogue Node
-    position: {x: 239.33333, y: 152.66667}
-  - guid: 536d3de0-b981-4b16-bc30-40e3f3a86a26
+    position: {x: 532, y: 148.66667}
+  - guid: 4cbe9f48-9018-45dc-b04a-9967d3c38bc3
     dialogueText: Dialogue Node
-    position: {x: 500, y: 152.66667}
+    position: {x: 240.66667, y: 162.66667}
+  - guid: 62debfd2-f201-4237-a59e-a512c301345d
+    dialogueText: Dialogue Node
+    position: {x: 0, y: 0}

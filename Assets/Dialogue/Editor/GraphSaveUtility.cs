@@ -7,6 +7,8 @@ using UnityEngine;
 public class GraphSaveUtility
 {
     private DialogueGraphView targetGraphView;
+    private DialogueContainer containerCache;
+    
     private List<Edge> Edges => targetGraphView.edges.ToList();
     private List<DialogueNode> Nodes => targetGraphView.nodes.ToList().Cast<DialogueNode>().ToList();
     
@@ -67,9 +69,63 @@ public class GraphSaveUtility
         AssetDatabase.CreateAsset(dialogueContainer, $"Assets/Resources/{fileName}.asset");
         AssetDatabase.SaveAssets();
     }
-
+    
+    /// <summary>
+    /// Load graph
+    /// </summary>
+    /// <param name="fileName">Dialogue Graph file name</param>
     public void LoadGraph(string fileName)
     {
-        
+        containerCache = Resources.Load<DialogueContainer>(fileName);
+
+        if (containerCache == null)
+        {
+            EditorUtility.DisplayDialog("File not Found", 
+                $"Target dialogue graph file ({fileName}) does not exist!", "OK");
+            return;
+        }
+
+        ClearGraph();
+        CreateNodes();
+        // ConnectNodes();
+    }
+    
+    /// <summary>
+    /// Clear the dialogue graph
+    /// </summary>
+    private void ClearGraph()
+    {
+        // Set entry point (Start node) GUID 
+        Nodes.Find(node => node.entryPoint).GUID = containerCache.nodeLinks[0].baseNodeGuid;
+
+        foreach (var node in Nodes)
+        {
+            if (node.entryPoint) continue;
+            
+            // Remove edges that connected to this node
+            Edges.Where(edge => edge.input.node == node).ToList()
+                .ForEach(edge => targetGraphView.RemoveElement(edge));
+            
+            // Remove node
+            targetGraphView.RemoveElement(node);
+        }
+    }
+
+    /// <summary>
+    /// Create nodes
+    /// </summary>
+    private void CreateNodes()
+    {
+        foreach (var nodeData in containerCache.dialogueNodeDatas)
+        {
+            // Add node
+            var tempNode = targetGraphView.CreateDialogueNode(nodeData.dialogueText);
+            tempNode.GUID = nodeData.guid;
+            targetGraphView.AddElement(tempNode);
+
+            // Add choice ports in node
+            var nodePorts = containerCache.nodeLinks.Where(x => x.baseNodeGuid == nodeData.guid).ToList();
+            nodePorts.ForEach(x => targetGraphView.AddChoicePort(tempNode, x.portName));
+        }
     }
 }
