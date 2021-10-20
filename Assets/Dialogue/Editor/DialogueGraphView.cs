@@ -108,10 +108,37 @@ public class DialogueGraphView : GraphView
         
         // Add input port to dialogue node
         dialogueNode.inputContainer.Add(inputPort);
+
+        // Make choice button
+        var button = new Button(() => { AddChoicePort(dialogueNode); })
+        {
+            text = "New choice"
+        };
+
+        // Add choice button to dialogue node as title
+        dialogueNode.titleContainer.Add(button);
+        
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
         dialogueNode.SetPosition(new Rect(Vector2.zero, defaultNodeSize));
 
         return dialogueNode;
+    }
+    
+    /// <summary>
+    /// Add choice port in dialogueNode
+    /// </summary>
+    /// <param name="dialogueNode">Dialogue Node</param>
+    private void AddChoicePort(DialogueNode dialogueNode)
+    {
+        var generatedPort = GeneratePort(dialogueNode, Direction.Output);
+        
+        var outputPortCount = dialogueNode.outputContainer.Query("connector").ToList().Count;
+        generatedPort.portName = $"Choice {outputPortCount}";
+        
+        // Add generated port to node
+        dialogueNode.outputContainer.Add(generatedPort);
+        dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
     }
 }
