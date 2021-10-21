@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -129,6 +130,19 @@ public class DialogueGraphView : GraphView
 
         // Add choice button to dialogue node as title
         dialogueNode.titleContainer.Add(button);
+        
+        // Make text field for dialogue node title
+        var textField = new TextField(string.Empty);
+        textField.RegisterValueChangedCallback(evt =>
+        {
+            dialogueNode.dialogueText = evt.newValue;
+            dialogueNode.title = evt.newValue;
+        });
+        
+        textField.SetValueWithoutNotify(dialogueNode.title);
+        
+        // Add node title text field to main container 
+        dialogueNode.mainContainer.Add(textField);
         
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
