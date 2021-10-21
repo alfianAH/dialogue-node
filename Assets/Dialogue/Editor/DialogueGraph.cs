@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -22,8 +23,19 @@ public class DialogueGraph : EditorWindow
     {
         ConstructGraphView();
         GenerateToolbar();
+        GenerateMinimap();
     }
     
+    /// <summary>
+    /// Generate minimap in graph view
+    /// </summary>
+    private void GenerateMinimap()
+    {
+        var minimap = new MiniMap{anchored = true};
+        minimap.SetPosition(new Rect(10, 30, 200, 140));
+        graphView.Add(minimap);
+    }
+
     /// <summary>
     /// Construct new dialogue graph view
     /// </summary>
