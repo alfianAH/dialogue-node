@@ -17,9 +17,6 @@ MonoBehaviour:
     portName: Next
     targetNodeGuid: b93939ac-b140-4910-b462-63dc86f9b205
   - baseNodeGuid: b93939ac-b140-4910-b462-63dc86f9b205
-    portName: a
-    targetNodeGuid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
-  - baseNodeGuid: b93939ac-b140-4910-b462-63dc86f9b205
     portName: b
     targetNodeGuid: e1c922f2-1448-4c23-b16f-414c48178088
   - baseNodeGuid: b93939ac-b140-4910-b462-63dc86f9b205
@@ -43,4 +40,4 @@ MonoBehaviour:
     position: {x: 475.33334, y: 145.33334}
   - guid: e1c922f2-1448-4c23-b16f-414c48178088
     dialogueText: Dialogue Node
-    position: {x: 475.33334, y: 238.00002}
+    position: {x: 475.33334, y: 255.33333}
