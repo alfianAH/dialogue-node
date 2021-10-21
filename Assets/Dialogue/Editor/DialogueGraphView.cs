@@ -82,6 +82,10 @@ public class DialogueGraphView : GraphView
         generatedPort.portName = "Next";
         node.outputContainer.Add(generatedPort);
         
+        // Make entry point node can't be moved and deleted
+        node.capabilities &= ~Capabilities.Movable;
+        node.capabilities &= ~Capabilities.Deletable;
+        
         // Remove expanded state in entry point node
         node.RefreshExpandedState();
         node.RefreshPorts();
