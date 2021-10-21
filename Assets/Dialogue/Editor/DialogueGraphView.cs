@@ -114,6 +114,9 @@ public class DialogueGraphView : GraphView
             dialogueText = nodeName,
             GUID = Guid.NewGuid().ToString()
         };
+        
+        // Set the dialogue node's title color
+        dialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
 
         // Generate input port
         var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Multi);
