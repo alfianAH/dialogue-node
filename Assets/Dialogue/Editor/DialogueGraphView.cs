@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 public class DialogueGraphView : GraphView
 {
     public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
+
+    private NodeSearchWindow searchWindow;
     
     public DialogueGraphView()
     {
@@ -27,6 +29,17 @@ public class DialogueGraphView : GraphView
         grid.StretchToParentSize();
         
         AddElement(GenerateEntryPointNode());
+        AddSearchWindow();
+    }
+    
+    /// <summary>
+    /// Add search window in graph view by right click
+    /// </summary>
+    private void AddSearchWindow()
+    {
+        searchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
+        nodeCreationRequest = context =>
+            SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindow);
     }
 
     /// <summary>
