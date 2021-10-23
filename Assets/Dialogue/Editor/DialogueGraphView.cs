@@ -209,19 +209,17 @@ public class DialogueGraphView : GraphView
     private void RemovePort(DialogueNode dialogueNode, Port generatedPort)
     {
         var targetEdge = edges.ToList().Where(
-            x => x.output.portName == generatedPort.portName && x.output.node == generatedPort.node).ToList();
+            x => x.output.portName == generatedPort.portName && x.output.node == generatedPort.node);
+        
+        // Remove the port
+        dialogueNode.outputContainer.Remove(generatedPort);
+        dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
         
         // If there are no target edge, return
         if (!targetEdge.Any()) return;
         var edge = targetEdge.First();
         edge.input.Disconnect(edge); // Disconnect the edge 
         RemoveElement(targetEdge.First()); // Remove the edge
-        
-        dialogueNode.outputContainer.Remove(generatedPort);
-        dialogueNode.RefreshPorts();
-        dialogueNode.RefreshExpandedState();
-
-
-
     }
 }

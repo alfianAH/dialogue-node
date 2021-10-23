@@ -25,19 +25,13 @@ MonoBehaviour:
   - baseNodeGuid: b93939ac-b140-4910-b462-63dc86f9b205
     portName: d
     targetNodeGuid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
-  - baseNodeGuid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
-    portName: b
-    targetNodeGuid: e1c922f2-1448-4c23-b16f-414c48178088
-  - baseNodeGuid: e1c922f2-1448-4c23-b16f-414c48178088
-    portName: c
-    targetNodeGuid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
   dialogueNodeDatas:
-  - guid: b93939ac-b140-4910-b462-63dc86f9b205
-    dialogueText: Node 1
-    position: {x: 191.33333, y: 145.33334}
-  - guid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
-    dialogueText: Node 2
-    position: {x: 475.33334, y: 145.33334}
   - guid: e1c922f2-1448-4c23-b16f-414c48178088
     dialogueText: Node 3
-    position: {x: 475.33334, y: 254.66667}
+    position: {x: 515.3333, y: 242.00002}
+  - guid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
+    dialogueText: Node 2
+    position: {x: 515.3333, y: 103.33333}
+  - guid: b93939ac-b140-4910-b462-63dc86f9b205
+    dialogueText: Node 1
+    position: {x: 196, y: 192}
