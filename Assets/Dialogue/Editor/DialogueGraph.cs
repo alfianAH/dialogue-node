@@ -42,7 +42,7 @@ public class DialogueGraph : EditorWindow
     private void ConstructGraphView()
     {
         // Set the name of dialogue graph view
-        graphView = new DialogueGraphView
+        graphView = new DialogueGraphView(this)
         {
             name = "Dialogue Graph"
         };
@@ -76,13 +76,6 @@ public class DialogueGraph : EditorWindow
             {text = "Load Data"}
         );
         
-        // Add button to create new node
-        var nodeCreateButton = new Button(() =>
-        {
-            graphView.CreateNode("Dialogue Node");
-        }) {text = "Create Node"};
-
-        toolbar.Add(nodeCreateButton);
         rootVisualElement.Add(toolbar);
     }
 

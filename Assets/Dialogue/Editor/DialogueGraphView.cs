@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,7 +12,7 @@ public class DialogueGraphView : GraphView
 
     private NodeSearchWindow searchWindow;
     
-    public DialogueGraphView()
+    public DialogueGraphView(EditorWindow editorWindow)
     {
         // Add style sheet for grid
         styleSheets.Add(Resources.Load<StyleSheet>("DialogueGraph"));
@@ -29,15 +30,18 @@ public class DialogueGraphView : GraphView
         grid.StretchToParentSize();
         
         AddElement(GenerateEntryPointNode());
-        AddSearchWindow();
+        AddSearchWindow(editorWindow);
     }
     
     /// <summary>
     /// Add search window in graph view by right click
     /// </summary>
-    private void AddSearchWindow()
+    /// <param name="editorWindow">Editor window</param>
+    private void AddSearchWindow(EditorWindow editorWindow)
     {
         searchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
+        searchWindow.Init(editorWindow, this);
+
         nodeCreationRequest = context =>
             SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindow);
     }
@@ -107,22 +111,24 @@ public class DialogueGraphView : GraphView
 
         return node;
     }
-    
+
     /// <summary>
     /// Add created dialogue node element 
     /// </summary>
     /// <param name="nodeName">Node name</param>
-    public void CreateNode(string nodeName)
+    /// <param name="position">Mouse position</param>
+    public void CreateNode(string nodeName, Vector2 position)
     {
-        AddElement(CreateDialogueNode(nodeName));
+        AddElement(CreateDialogueNode(nodeName, position));
     }
-    
+
     /// <summary>
     /// Create dialogue node
     /// </summary>
     /// <param name="nodeName">Node name</param>
+    /// <param name="position">Mouse position</param>
     /// <returns>New dialogue node with input port</returns>
-    public DialogueNode CreateDialogueNode(string nodeName)
+    public DialogueNode CreateDialogueNode(string nodeName, Vector2 position)
     {
         var dialogueNode = new DialogueNode
         {
@@ -165,7 +171,8 @@ public class DialogueGraphView : GraphView
         
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
-        dialogueNode.SetPosition(new Rect(Vector2.zero, defaultNodeSize));
+        // Set the node's position 
+        dialogueNode.SetPosition(new Rect(position, defaultNodeSize));
 
         return dialogueNode;
     }
