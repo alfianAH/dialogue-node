@@ -10,6 +10,8 @@ public class DialogueGraphView : GraphView
 {
     public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
 
+    public Blackboard Blackboard;
+    public List<ExposedProperty> ExposedProperties = new List<ExposedProperty>();
     private NodeSearchWindow searchWindow;
     
     public DialogueGraphView(EditorWindow editorWindow)
@@ -241,5 +243,25 @@ public class DialogueGraphView : GraphView
         var edge = targetEdge.First();
         edge.input.Disconnect(edge); // Disconnect the edge 
         RemoveElement(targetEdge.First()); // Remove the edge
+    }
+
+    public void AddPropertyToBlackBoard(ExposedProperty exposedProperty)
+    {
+        var property = new ExposedProperty
+        {
+            propertyName = exposedProperty.propertyName, 
+            propertyValue = exposedProperty.propertyValue
+        };
+
+        ExposedProperties.Add(property);
+        var container = new VisualElement();
+        var blackboardField = new BlackboardField
+        {
+            text = property.propertyName,
+            typeText = "string property"
+        };
+        
+        container.Add(blackboardField);
+        Blackboard.Add(container);
     }
 }
