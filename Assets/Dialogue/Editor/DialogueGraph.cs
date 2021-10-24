@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -42,6 +43,24 @@ public class DialogueGraph : EditorWindow
         blackboardView.addItemRequested = blackboard =>
         {
             graphView.AddPropertyToBlackBoard(new ExposedProperty());
+        };
+        
+        blackboardView.editTextRequested = (blackboard, element, newValue) =>
+        {
+            var oldPropertyName = ((BlackboardField) element).text;
+            
+            // If new value of property name exists, give warning
+            if (graphView.ExposedProperties.Any(x => x.propertyName == newValue))
+            {
+                EditorUtility.DisplayDialog("Error", $"Variable name (\"{newValue}\") already exists", "OK");
+                return;
+            }
+            
+            // Get property index 
+            var propertyIndex = graphView.ExposedProperties.FindIndex(x => x.propertyName == oldPropertyName);
+            // Change property name
+            graphView.ExposedProperties[propertyIndex].propertyName = newValue;
+            ((BlackboardField) element).text = newValue;
         };
         
         blackboardView.SetPosition(new Rect(10, 30, 200, 300));

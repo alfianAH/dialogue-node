@@ -251,10 +251,18 @@ public class DialogueGraphView : GraphView
     /// <param name="exposedProperty"></param>
     public void AddPropertyToBlackBoard(ExposedProperty exposedProperty)
     {
+        var localPropertyName = exposedProperty.propertyName;
+        var localPropertyValue = exposedProperty.propertyValue;
+
+        while (ExposedProperties.Any(x => x.propertyName == localPropertyName))
+        {
+            localPropertyName = $"{localPropertyName}(1)";
+        }
+        
         var property = new ExposedProperty
         {
-            propertyName = exposedProperty.propertyName, 
-            propertyValue = exposedProperty.propertyValue
+            propertyName = localPropertyName, 
+            propertyValue = localPropertyValue
         };
         ExposedProperties.Add(property);
         
