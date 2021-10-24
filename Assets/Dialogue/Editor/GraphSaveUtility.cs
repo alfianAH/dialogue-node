@@ -27,12 +27,33 @@ public class GraphSaveUtility
     /// <param name="fileName">Dialogue graph file name</param>
     public void SaveGraph(string fileName)
     {
-        // If there are no edges (connection) then return
-        if (!Edges.Any()) return;
-
         // Create dialogue container
         var dialogueContainer = ScriptableObject.CreateInstance<DialogueContainer>();
+
+        if (!SaveNodes(dialogueContainer)) return;
+
+        // Save exposed property
+        SaveExposedProperties(dialogueContainer);
         
+        // Create resources folder if there aren't any in Assets folder
+        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            AssetDatabase.CreateFolder("Assets", "Resources");
+        
+        // Create and save the asset
+        AssetDatabase.CreateAsset(dialogueContainer, $"Assets/Resources/{fileName}.asset");
+        AssetDatabase.SaveAssets();
+    }
+    
+    /// <summary>
+    /// Save nodes
+    /// </summary>
+    /// <param name="dialogueContainer">Dialogue container</param>
+    /// <returns></returns>
+    private bool SaveNodes(DialogueContainer dialogueContainer)
+    {
+        // If there are no edges (connection) then return
+        if (!Edges.Any()) return false;
+
         // Add connected ports only
         var connectedPorts = Edges.Where(x=> x.input.node != null).ToArray();
 
@@ -62,15 +83,18 @@ public class GraphSaveUtility
             });
         }
 
-        // Create resources folder if there aren't any in Assets folder
-        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
-            AssetDatabase.CreateFolder("Assets", "Resources");
-        
-        // Create and save the asset
-        AssetDatabase.CreateAsset(dialogueContainer, $"Assets/Resources/{fileName}.asset");
-        AssetDatabase.SaveAssets();
+        return true;
     }
     
+    /// <summary>
+    /// Save exposed properties
+    /// </summary>
+    /// <param name="dialogueContainer"></param>
+    private void SaveExposedProperties(DialogueContainer dialogueContainer)
+    {
+        dialogueContainer.exposedProperties.AddRange(targetGraphView.ExposedProperties);
+    }
+
     /// <summary>
     /// Load graph
     /// </summary>
@@ -89,8 +113,24 @@ public class GraphSaveUtility
         ClearGraph();
         CreateNodes();
         ConnectNodes();
+        CreateExposedProperties();
     }
     
+    /// <summary>
+    /// Create exposed property
+    /// </summary>
+    private void CreateExposedProperties()
+    {
+        // Clear existing properties from blackboard
+        targetGraphView.ClearBlackboardAndExposedProperties();
+        
+        // Add properties from data
+        foreach (var exposedProperty in containerCache.exposedProperties)
+        {
+            targetGraphView.AddPropertyToBlackBoard(exposedProperty);
+        }
+    }
+
     /// <summary>
     /// Clear the dialogue graph
     /// </summary>

@@ -16,6 +16,12 @@ MonoBehaviour:
   - baseNodeGuid: 0b429213-381e-4fb9-b9f8-7dbd912ebb25
     portName: Next
     targetNodeGuid: b93939ac-b140-4910-b462-63dc86f9b205
+  - baseNodeGuid: e1c922f2-1448-4c23-b16f-414c48178088
+    portName: a
+    targetNodeGuid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
+  - baseNodeGuid: 79eb0d04-0e20-4d04-94f4-5e2bf12657ef
+    portName: a
+    targetNodeGuid: e1c922f2-1448-4c23-b16f-414c48178088
   - baseNodeGuid: b93939ac-b140-4910-b462-63dc86f9b205
     portName: b
     targetNodeGuid: e1c922f2-1448-4c23-b16f-414c48178088
@@ -35,3 +41,8 @@ MonoBehaviour:
   - guid: b93939ac-b140-4910-b462-63dc86f9b205
     dialogueText: Node 1
     position: {x: 196, y: 192}
+  exposedProperties:
+  - propertyName: name
+    propertyValue: Alfian
+  - propertyName: age
+    propertyValue: 12

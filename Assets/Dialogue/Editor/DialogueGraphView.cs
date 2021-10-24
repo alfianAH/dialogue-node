@@ -246,6 +246,15 @@ public class DialogueGraphView : GraphView
     }
     
     /// <summary>
+    /// Clear blackboard and exposed properties
+    /// </summary>
+    public void ClearBlackboardAndExposedProperties()
+    {
+        ExposedProperties.Clear();
+        Blackboard.Clear();
+    }
+    
+    /// <summary>
     /// Add property to blackboard
     /// </summary>
     /// <param name="exposedProperty"></param>
@@ -288,7 +297,7 @@ public class DialogueGraphView : GraphView
             var changingPropertyIndex = ExposedProperties.FindIndex(
                 x => x.propertyName == property.propertyName);
             // Change the property value
-            ExposedProperties[changingPropertyIndex].propertyName = evt.newValue;
+            ExposedProperties[changingPropertyIndex].propertyValue = evt.newValue;
         });
         
         var blackboardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
