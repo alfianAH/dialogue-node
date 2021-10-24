@@ -37,7 +37,8 @@ public class DialogueGraph : EditorWindow
         {
             title = "Exposed Properties"
         });
-
+        
+        // Add property in blackboard
         blackboardView.addItemRequested = blackboard =>
         {
             graphView.AddPropertyToBlackBoard(new ExposedProperty());

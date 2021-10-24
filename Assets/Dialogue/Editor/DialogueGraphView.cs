@@ -244,7 +244,11 @@ public class DialogueGraphView : GraphView
         edge.input.Disconnect(edge); // Disconnect the edge 
         RemoveElement(targetEdge.First()); // Remove the edge
     }
-
+    
+    /// <summary>
+    /// Add property to blackboard
+    /// </summary>
+    /// <param name="exposedProperty"></param>
     public void AddPropertyToBlackBoard(ExposedProperty exposedProperty)
     {
         var property = new ExposedProperty
@@ -252,9 +256,10 @@ public class DialogueGraphView : GraphView
             propertyName = exposedProperty.propertyName, 
             propertyValue = exposedProperty.propertyValue
         };
-
         ExposedProperties.Add(property);
+        
         var container = new VisualElement();
+        // Add blackboard field
         var blackboardField = new BlackboardField
         {
             text = property.propertyName,
@@ -262,6 +267,25 @@ public class DialogueGraphView : GraphView
         };
         
         container.Add(blackboardField);
+        
+        // Add property value text field
+        var propertyValueTextField = new TextField("Value:")
+        {
+            value = property.propertyValue
+        };
+        
+        propertyValueTextField.RegisterValueChangedCallback(evt =>
+        {
+            // Search which property's value that change
+            var changingPropertyIndex = ExposedProperties.FindIndex(
+                x => x.propertyName == property.propertyName);
+            // Change the property value
+            ExposedProperties[changingPropertyIndex].propertyName = evt.newValue;
+        });
+        
+        var blackboardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
+        container.Add(blackboardValueRow);
+        
         Blackboard.Add(container);
     }
 }
