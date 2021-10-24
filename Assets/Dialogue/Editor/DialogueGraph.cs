@@ -34,6 +34,7 @@ public class DialogueGraph : EditorWindow
     private void GenerateBlackboard()
     {
         var blackboardView = new Blackboard(graphView);
+        
         blackboardView.Add(new BlackboardSection
         {
             title = "Exposed Properties"
@@ -63,11 +64,10 @@ public class DialogueGraph : EditorWindow
             ((BlackboardField) element).text = newValue;
         };
         
-        blackboardView.SetPosition(new Rect(10, 30, 200, 300));
+        blackboardView.SetPosition(new Rect(10, 180, 200, 300));
         
         graphView.Add(blackboardView);
         graphView.Blackboard = blackboardView;
-        
     }
     
     /// <summary>
@@ -76,7 +76,7 @@ public class DialogueGraph : EditorWindow
     private void GenerateMinimap()
     {
         var minimap = new MiniMap{anchored = true};
-        var cords = graphView.contentViewContainer.WorldToLocal(new Vector2(maxSize.x - 10, 30));
+        var cords = graphView.contentViewContainer.WorldToLocal(new Vector2(10, 30));
         minimap.SetPosition(new Rect(cords.x, cords.y, 200, 140));
         graphView.Add(minimap);
     }
