@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BehaviourTreeRunner : MonoBehaviour
@@ -13,8 +10,11 @@ public class BehaviourTreeRunner : MonoBehaviour
 
         var log = ScriptableObject.CreateInstance<DebugLogNode>();
         log.message = "Hellow";
-
-        tree.rootNode = log;
+        
+        var loop = ScriptableObject.CreateInstance<RepeatNode>();
+        loop.child = log;
+        
+        tree.rootNode = loop;
     }
 
     private void Update()
