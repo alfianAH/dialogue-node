@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
@@ -26,19 +27,62 @@ public class BehaviourTreeView: GraphView
     /// Populate graph view
     /// </summary>
     /// <param name="tree"></param>
-    public void PopulateView(BehaviourTree tree)
+    internal void PopulateView(BehaviourTree tree)
     {
         this.tree = tree;
         DeleteElements(graphElements);
         
         tree.nodes.ForEach(n => CreateNodeView(n));
     }
+
+    public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+    {
+        // Action nodes
+        {
+            var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
+            foreach (var type in types)
+            {
+                evt.menu.AppendAction($"[{type.BaseType?.Name}] {type.Name}", 
+                    action => CreateNode(type));
+            }
+        }
+        
+        // Composite nodes
+        {
+            var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
+            foreach (var type in types)
+            {
+                evt.menu.AppendAction($"[{type.BaseType?.Name}] {type.Name}", 
+                    action => CreateNode(type));
+            }
+        }
+        
+        // Decorator nodes
+        {
+            var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
+            foreach (var type in types)
+            {
+                evt.menu.AppendAction($"[{type.BaseType?.Name}] {type.Name}", 
+                    action => CreateNode(type));
+            }
+        }
+    }
     
+    /// <summary>
+    /// Create node from node type
+    /// </summary>
+    /// <param name="type">Node type</param>
+    private void CreateNode(Type type)
+    {
+        Node node = tree.CreateNode(type);
+        CreateNodeView(node);
+    }
+
     /// <summary>
     /// Create node in graph view
     /// </summary>
     /// <param name="node"></param>
-    void CreateNodeView(Node node)
+    private void CreateNodeView(Node node)
     {
         NodeView nodeView = new NodeView(node);
         AddElement(nodeView);
