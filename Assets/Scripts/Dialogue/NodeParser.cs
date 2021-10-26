@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,37 +16,52 @@ public class NodeParser : MonoBehaviour
     
     private void Start()
     {
-        foreach (BaseNode node in dialogueGraph.nodes)
+        foreach (var node in dialogueGraph.nodes)
         {
-            if (node.GetString() == "Start")
+            BaseNode baseNode = (BaseNode) node;
+            if (baseNode.GetString() == "Start")
             {
                 // Make this code the starting point
-                dialogueGraph.current = node;
+                dialogueGraph.current = baseNode;
                 break;
             }
         }
 
         parser = StartCoroutine(ParseNode());
     }
-
+    
+    /// <summary>
+    /// Parse dialogue node
+    /// </summary>
+    /// <returns>Wait until left click</returns>
     private IEnumerator ParseNode()
     {
         BaseNode node = dialogueGraph.current;
         string data = node.GetString();
-        string[] dataParts = data.Split('/');
 
+        if (data == "Start")
+        {
+            NextNode("exit");
+            yield return null;
+        }
+        
+        string[] dataParts = data.Split('/');
+        
         if (dataParts[0] == "DialogueNode")
         {
             // Run dialogue
             speakerName.text = dataParts[1];
             dialogue.text = dataParts[2];
             speakerImage.sprite = node.GetSprite();
-            
             yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
             NextNode("exit");
         }
     }
-
+    
+    /// <summary>
+    /// Go to next node in graph 
+    /// </summary>
+    /// <param name="fieldName"></param>
     private void NextNode(string fieldName)
     {
         // Find the port with this name
@@ -59,8 +75,15 @@ public class NodeParser : MonoBehaviour
         {
             if (port.fieldName == fieldName)
             {
-                dialogueGraph.current = port.Connection.node as BaseNode;
-                break;
+                try
+                {
+                    dialogueGraph.current = port.Connection.node as BaseNode;
+                    break;
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.Log("Dialogue finish");
+                }
             }
         }
 
