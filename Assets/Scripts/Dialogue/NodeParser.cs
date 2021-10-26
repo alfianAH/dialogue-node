@@ -78,6 +78,7 @@ public class NodeParser : MonoBehaviour
                 try
                 {
                     dialogueGraph.current = port.Connection.node as BaseNode;
+                    parser = StartCoroutine(ParseNode());
                     break;
                 }
                 catch (NullReferenceException)
@@ -86,7 +87,5 @@ public class NodeParser : MonoBehaviour
                 }
             }
         }
-
-        parser = StartCoroutine(ParseNode());
     }
 }
