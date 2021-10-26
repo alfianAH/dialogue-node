@@ -30,9 +30,32 @@ public class BehaviourTreeView: GraphView
     internal void PopulateView(BehaviourTree tree)
     {
         this.tree = tree;
+        
+        graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
+        graphViewChanged += OnGraphViewChanged;
         
         tree.nodes.ForEach(n => CreateNodeView(n));
+    }
+    
+    /// <summary>
+    /// Handle graph view change
+    /// </summary>
+    /// <param name="graphViewChange"></param>
+    /// <returns>graphViewChange</returns>
+    private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
+    {
+        graphViewChange.elementsToRemove?.ForEach(elem =>
+        {
+            NodeView nodeView = elem as NodeView;
+
+            if (nodeView != null)
+            {
+                tree.DeleteNode(nodeView.node);
+            }
+        });
+
+        return graphViewChange;
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
