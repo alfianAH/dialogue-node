@@ -4,10 +4,7 @@ using UnityEngine.UIElements;
 
 public class BehaviourTreeView: GraphView
 {
-    public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits>
-    {
-        
-    }
+    public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
     
     public BehaviourTreeView()
     {
