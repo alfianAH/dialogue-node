@@ -9,6 +9,7 @@ public abstract class Node : ScriptableObject
 
     public State state = State.Running;
     public bool started = false;
+    public string guid;
 
     public State Update()
     {

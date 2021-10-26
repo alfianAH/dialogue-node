@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 public class BehaviourTreeView: GraphView
 {
     public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
+
+    private BehaviourTree tree;
     
     public BehaviourTreeView()
     {
@@ -18,5 +20,27 @@ public class BehaviourTreeView: GraphView
 
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviourTreeEditor.uss");
         styleSheets.Add(styleSheet);
+    }
+    
+    /// <summary>
+    /// Populate graph view
+    /// </summary>
+    /// <param name="tree"></param>
+    public void PopulateView(BehaviourTree tree)
+    {
+        this.tree = tree;
+        DeleteElements(graphElements);
+        
+        tree.nodes.ForEach(n => CreateNodeView(n));
+    }
+    
+    /// <summary>
+    /// Create node in graph view
+    /// </summary>
+    /// <param name="node"></param>
+    void CreateNodeView(Node node)
+    {
+        NodeView nodeView = new NodeView(node);
+        AddElement(nodeView);
     }
 }
