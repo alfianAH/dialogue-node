@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class BehaviourTreeView: GraphView
 {
+    public Action<NodeView> OnNodeSelected; 
     public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
 
     private BehaviourTree tree;
@@ -182,7 +183,10 @@ public class BehaviourTreeView: GraphView
     /// <param name="node"></param>
     private void CreateNodeView(Node node)
     {
-        NodeView nodeView = new NodeView(node);
+        NodeView nodeView = new NodeView(node)
+        {
+            OnNodeSelected = OnNodeSelected
+        };
         AddElement(nodeView);
     }
 }
