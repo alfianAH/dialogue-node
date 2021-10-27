@@ -15,7 +15,24 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 533dbcf486f90b6409977cfe67c33914
-  position: {x: 172.66666, y: -20.967762}
+  position: {x: 157.92422, y: 134.66666}
+  duration: 1
+--- !u!114 &-5024124214420919962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2e149fb16242a8af0fcba674c4fbf5, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 0b6b0d2b382e20b4ab59641c6bf0de15
+  position: {x: 168.6666, y: 562.11536}
   duration: 1
 --- !u!114 &-4898381316606251747
 MonoBehaviour:
@@ -32,8 +49,25 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ab051941cfb82ff4b96278536fe78379
-  position: {x: 172.66666, y: 179.99998}
-  message: hello 1
+  position: {x: 168.63422, y: 18.666664}
+  message: one
+--- !u!114 &-4626307181184811475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: c69f7919d0bcfb242bd7c417efcdb32a
+  position: {x: 168.66673, y: 239.46063}
+  message: 2
 --- !u!114 &-3937475561598109297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,7 +83,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2dcb3feba13bc2e48984fa998572d437
-  position: {x: -227.0133, y: 57.33333}
+  position: {x: -369.32217, y: 81.33333}
   child: {fileID: -2604595986026740955}
 --- !u!114 &-2604595986026740955
 MonoBehaviour:
@@ -68,9 +102,29 @@ MonoBehaviour:
   guid: 0723000bd0670a04cb9bf99658145d02
   position: {x: -45.550064, y: 81.333336}
   children:
-  - {fileID: 8835763820050526285}
   - {fileID: -4898381316606251747}
   - {fileID: -7508363355961155115}
+  - {fileID: -4626307181184811475}
+  - {fileID: -2286109923583740309}
+  - {fileID: 2683308918894543243}
+  - {fileID: -5024124214420919962}
+--- !u!114 &-2286109923583740309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2e149fb16242a8af0fcba674c4fbf5, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 62a48a9d47727ca49afa936c38df9b89
+  position: {x: 168.66666, y: 343.127}
+  duration: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,12 +140,33 @@ MonoBehaviour:
   rootNode: {fileID: -3937475561598109297}
   treeState: 0
   nodes:
-  - {fileID: 8835763820050526285}
   - {fileID: -4898381316606251747}
   - {fileID: -2604595986026740955}
   - {fileID: -3937475561598109297}
   - {fileID: -7508363355961155115}
---- !u!114 &8835763820050526285
+  - {fileID: -4626307181184811475}
+  - {fileID: -2286109923583740309}
+  - {fileID: 2683308918894543243}
+  - {fileID: -5024124214420919962}
+  - {fileID: 8867038869276950961}
+--- !u!114 &2683308918894543243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 08d9749b4ed63fb4bba4645ae95a9fff
+  position: {x: 168.66667, y: 451.9635}
+  message: 3
+--- !u!114 &8867038869276950961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,6 +180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: ff8803d80736127409e2412a1dedb90f
-  position: {x: 172.33337, y: 81.33333}
+  guid: d4c07185a64f99144b333afc42c13cec
+  position: {x: 0, y: 0}
   child: {fileID: 0}
