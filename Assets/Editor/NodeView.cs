@@ -26,17 +26,13 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
     /// </summary>
     private void CreateInputPorts()
     {
-        if (node is ActionNode)
+        switch (node)
         {
-            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
-        } 
-        else if (node is CompositeNode)
-        {
-            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
-        } 
-        else if (node is DecoratorNode)
-        {
-            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+            case ActionNode _:
+            case CompositeNode _:
+            case DecoratorNode _:
+                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                break;
         }
 
         if (input != null)
@@ -51,19 +47,18 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
     /// </summary>
     private void CreateOutputPorts()
     {
-        if (node is ActionNode)
+        switch (node)
         {
-            
-        } 
-        else if (node is CompositeNode)
-        {
-            output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
-        } 
-        else if (node is DecoratorNode)
-        {
-            output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+            case ActionNode _:
+                break;
+            case CompositeNode _:
+                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
+                break;
+            case DecoratorNode _:
+                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                break;
         }
-        
+
         if (output != null)
         {
             output.portName = "";

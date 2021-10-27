@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6202563971273248019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 168a82f19bdf7bd49b340d21f88be29a
+  position: {x: 0, y: 0}
+  message: 
 --- !u!114 &-4898381316606251747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,7 +50,8 @@ MonoBehaviour:
   started: 0
   guid: 0723000bd0670a04cb9bf99658145d02
   position: {x: 0, y: 0}
-  children: []
+  children:
+  - {fileID: 8835763820050526285}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,6 +70,7 @@ MonoBehaviour:
   - {fileID: 8835763820050526285}
   - {fileID: -4898381316606251747}
   - {fileID: -2604595986026740955}
+  - {fileID: -6202563971273248019}
 --- !u!114 &8835763820050526285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,5 +86,5 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ff8803d80736127409e2412a1dedb90f
-  position: {x: 107.433395, y: 120.00001}
+  position: {x: 165.29337, y: 119}
   child: {fileID: -4898381316606251747}
