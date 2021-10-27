@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
@@ -39,6 +41,19 @@ public class BehaviourTreeView: GraphView
     }
     
     /// <summary>
+    /// Get compatible ports
+    /// </summary>
+    /// <param name="startPort"></param>
+    /// <param name="nodeAdapter"></param>
+    /// <returns>Return ports where endport's direction and node aren't startport's</returns>
+    public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+    {
+        return ports.ToList().Where(endPort =>
+            endPort.direction != startPort.direction &&
+            endPort.node != startPort.node).ToList();
+    }
+
+    /// <summary>
     /// Handle graph view change
     /// </summary>
     /// <param name="graphViewChange"></param>
@@ -47,11 +62,38 @@ public class BehaviourTreeView: GraphView
     {
         graphViewChange.elementsToRemove?.ForEach(elem =>
         {
-            NodeView nodeView = elem as NodeView;
-
-            if (nodeView != null)
+            // Remove nodes
+            // If elem as node view is not null, ...
+            if (elem is NodeView nodeView)
             {
+                // Delete node
                 tree.DeleteNode(nodeView.node);
+            }
+            
+            // Remove edges
+            // If elem as edge is not null, ...
+            if (elem is Edge edge)
+            {
+                // If edge's output node as node view (parent) and 
+                // edge's input node as node view (child) are not null
+                if(edge.output.node is NodeView parentView && 
+                   edge.input.node is NodeView childView)
+                {
+                    // Remove child
+                    tree.RemoveChild(parentView.node, childView.node);
+                }
+            }
+        });
+
+        graphViewChange.edgesToCreate?.ForEach(edge =>
+        {
+            // If edge's output node as node view (parent) and 
+            // edge's input node as node view (child) are not null
+            if(edge.output.node is NodeView parentView && 
+               edge.input.node is NodeView childView)
+            {
+                // Add child 
+                tree.AddChild(parentView.node, childView.node);
             }
         });
 

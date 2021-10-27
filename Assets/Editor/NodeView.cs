@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public class NodeView: UnityEditor.Experimental.GraphView.Node
 {
     public Node node;
+    public Port input;
+    public Port output;
     
     public NodeView(Node node)
     {
@@ -13,7 +16,62 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
         // Set position
         style.left = node.position.x;
         style.top = node.position.y;
+
+        CreateInputPorts();
+        CreateOutputPorts();
     }
+    
+    /// <summary>
+    /// Create input port in node
+    /// </summary>
+    private void CreateInputPorts()
+    {
+        if (node is ActionNode)
+        {
+            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+        } 
+        else if (node is CompositeNode)
+        {
+            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+        } 
+        else if (node is DecoratorNode)
+        {
+            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+        }
+
+        if (input != null)
+        {
+            input.portName = "";
+            inputContainer.Add(input);
+        }
+    }
+    
+    /// <summary>
+    /// Create output port in node
+    /// </summary>
+    private void CreateOutputPorts()
+    {
+        if (node is ActionNode)
+        {
+            
+        } 
+        else if (node is CompositeNode)
+        {
+            output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
+        } 
+        else if (node is DecoratorNode)
+        {
+            output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+        }
+        
+        if (output != null)
+        {
+            output.portName = "";
+            outputContainer.Add(output);
+        }
+    }
+    
+    
 
     public override void SetPosition(Rect newPos)
     {

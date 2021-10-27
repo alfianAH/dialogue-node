@@ -51,4 +51,72 @@ public class BehaviourTree : ScriptableObject
         AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();
     }
+    
+    /// <summary>
+    /// Add child node to parent node (decorator and composite node)
+    /// Note: Action node doesn't have child
+    /// </summary>
+    /// <param name="parent">Parent Node</param>
+    /// <param name="child">Child node</param>
+    public void AddChild(Node parent, Node child)
+    {
+        // Add decorator node's child
+        DecoratorNode decoratorNode = parent as DecoratorNode;
+        if (decoratorNode != null)
+        {
+            decoratorNode.child = child;
+        }
+        
+        // Add composite node's children
+        CompositeNode compositeNode = parent as CompositeNode;
+        if (compositeNode != null)
+        {
+            compositeNode.children.Add(child);
+        }
+    }
+    
+    /// <summary>
+    /// Remove child node in parent node (decorator and composite node)
+    /// Note: Action node doesn't have child
+    /// </summary>
+    /// <param name="parent">Parent child</param>
+    /// <param name="child">Child node</param>
+    public void RemoveChild(Node parent, Node child)
+    {
+        DecoratorNode decoratorNode = parent as DecoratorNode;
+        if (decoratorNode != null)
+        {
+            decoratorNode.child = null;
+        }
+        
+        CompositeNode compositeNode = parent as CompositeNode;
+        if (compositeNode != null)
+        {
+            compositeNode.children.Remove(child);
+        }
+    }
+    
+    /// <summary>
+    /// Get parent node's children
+    /// </summary>
+    /// <param name="parent">Parent node</param>
+    /// <returns></returns>
+    public List<Node> GetChildren(Node parent)
+    {
+        List<Node> children = new List<Node>();
+        
+        DecoratorNode decoratorNode = parent as DecoratorNode;
+        if (decoratorNode != null && decoratorNode.child != null)
+        {
+            children.Add(decoratorNode);
+        }
+        
+        CompositeNode compositeNode = parent as CompositeNode;
+        if (compositeNode != null)
+        {
+            return compositeNode.children;
+        }
+
+        return children;
+    }
 }
