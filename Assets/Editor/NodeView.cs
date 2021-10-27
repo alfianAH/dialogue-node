@@ -71,8 +71,6 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
         }
     }
     
-    
-
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
