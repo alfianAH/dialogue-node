@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BehaviourTreeView: GraphView
@@ -55,9 +54,7 @@ public class BehaviourTreeView: GraphView
                 NodeView parentView = FindNodeView(parentNode);
                 // Get child node view
                 NodeView childView = FindNodeView(childNode);
-                
-                Debug.Log($"Parent: {parentView.name} child: {childView}");
-                
+
                 // Connect the child and the parent
                 Edge edge = parentView.output.ConnectTo(childView.input);
 

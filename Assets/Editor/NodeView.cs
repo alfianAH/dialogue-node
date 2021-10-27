@@ -26,13 +26,17 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
     /// </summary>
     private void CreateInputPorts()
     {
-        switch (node)
+        if (node is ActionNode)
         {
-            case ActionNode _:
-            case CompositeNode _:
-            case DecoratorNode _:
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
-                break;
+            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+        } 
+        else if (node is CompositeNode)
+        {
+            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+        } 
+        else if (node is DecoratorNode)
+        {
+            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
         }
 
         if (input != null)

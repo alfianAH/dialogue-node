@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu]
 public class BehaviourTree : ScriptableObject
 {
     public Node rootNode;
