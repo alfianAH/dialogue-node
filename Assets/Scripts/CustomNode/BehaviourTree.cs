@@ -60,6 +60,13 @@ public class BehaviourTree : ScriptableObject
     /// <param name="child">Child node</param>
     public void AddChild(Node parent, Node child)
     {
+        // Add root node's child
+        RootNode rootNode = parent as RootNode;
+        if (rootNode != null)
+        {
+            rootNode.child = child;
+        }
+        
         // Add decorator node's child
         DecoratorNode decoratorNode = parent as DecoratorNode;
         if (decoratorNode != null)
@@ -83,12 +90,21 @@ public class BehaviourTree : ScriptableObject
     /// <param name="child">Child node</param>
     public void RemoveChild(Node parent, Node child)
     {
+        // Remove root node's child
+        RootNode rootNode = parent as RootNode;
+        if (rootNode != null)
+        {
+            rootNode.child = null;
+        }
+        
+        // Remove decorator node's child
         DecoratorNode decoratorNode = parent as DecoratorNode;
         if (decoratorNode != null)
         {
             decoratorNode.child = null;
         }
         
+        // Remove composite node's children
         CompositeNode compositeNode = parent as CompositeNode;
         if (compositeNode != null)
         {
@@ -104,6 +120,13 @@ public class BehaviourTree : ScriptableObject
     public List<Node> GetChildren(Node parent)
     {
         List<Node> children = new List<Node>();
+        
+        // Remove root node's child
+        RootNode rootNode = parent as RootNode;
+        if (rootNode != null && rootNode.child != null)
+        {
+            children.Add(rootNode.child);
+        }
         
         DecoratorNode decoratorNode = parent as DecoratorNode;
         if (decoratorNode != null && decoratorNode.child != null)

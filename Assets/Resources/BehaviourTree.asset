@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6202563971273248019
+--- !u!114 &-7508363355961155115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
-  m_Name: DebugLogNode
+  m_Script: {fileID: 11500000, guid: ec2e149fb16242a8af0fcba674c4fbf5, type: 3}
+  m_Name: WaitNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 168a82f19bdf7bd49b340d21f88be29a
+  guid: 533dbcf486f90b6409977cfe67c33914
   position: {x: 0, y: 0}
-  message: 
+  duration: 1
 --- !u!114 &-4898381316606251747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,8 +32,25 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ab051941cfb82ff4b96278536fe78379
-  position: {x: 346.6667, y: 119.99999}
-  message: 
+  position: {x: 172.66666, y: 179.99998}
+  message: hello 1
+--- !u!114 &-3937475561598109297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3102863d49ea41e7bdeda333c9392caf, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 2dcb3feba13bc2e48984fa998572d437
+  position: {x: -227.0133, y: 57.33333}
+  child: {fileID: -2604595986026740955}
 --- !u!114 &-2604595986026740955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,9 +66,10 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0723000bd0670a04cb9bf99658145d02
-  position: {x: 0, y: 0}
+  position: {x: -17, y: 81.33333}
   children:
   - {fileID: 8835763820050526285}
+  - {fileID: -4898381316606251747}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,13 +82,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d8fe63b1a4bafa38477a4ed308149, type: 3}
   m_Name: BehaviourTree
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 0}
+  rootNode: {fileID: -3937475561598109297}
   treeState: 0
   nodes:
   - {fileID: 8835763820050526285}
   - {fileID: -4898381316606251747}
   - {fileID: -2604595986026740955}
-  - {fileID: -6202563971273248019}
+  - {fileID: -3937475561598109297}
+  - {fileID: -7508363355961155115}
 --- !u!114 &8835763820050526285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,5 +105,5 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ff8803d80736127409e2412a1dedb90f
-  position: {x: 165.29337, y: 119}
-  child: {fileID: -4898381316606251747}
+  position: {x: 172.33337, y: 81.33333}
+  child: {fileID: 0}
