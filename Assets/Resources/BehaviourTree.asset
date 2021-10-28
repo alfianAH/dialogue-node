@@ -67,7 +67,7 @@ MonoBehaviour:
   started: 0
   guid: c69f7919d0bcfb242bd7c417efcdb32a
   position: {x: 147.37111, y: 232.30646}
-  message: 2
+  message: two
 --- !u!114 &-3937475561598109297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,9 +105,9 @@ MonoBehaviour:
   - {fileID: -7508363355961155115}
   - {fileID: -4626307181184811475}
   - {fileID: -2286109923583740309}
-  - {fileID: 2683308918894543243}
   - {fileID: -4898381316606251747}
   - {fileID: -5024124214420919962}
+  - {fileID: 7535520499839451133}
 --- !u!114 &-2286109923583740309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,10 +146,10 @@ MonoBehaviour:
   - {fileID: -7508363355961155115}
   - {fileID: -4626307181184811475}
   - {fileID: -2286109923583740309}
-  - {fileID: 2683308918894543243}
   - {fileID: -5024124214420919962}
   - {fileID: 8867038869276950961}
---- !u!114 &2683308918894543243
+  - {fileID: 7535520499839451133}
+--- !u!114 &7535520499839451133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 08d9749b4ed63fb4bba4645ae95a9fff
-  position: {x: 362.70447, y: 232.30646}
-  message: 3
+  guid: 31ba9c20c64097245b136f2d136c4300
+  position: {x: 377.78534, y: 231.99998}
+  message: three
 --- !u!114 &8867038869276950961
 MonoBehaviour:
   m_ObjectHideFlags: 0
