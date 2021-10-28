@@ -19,6 +19,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   children:
   - {fileID: -2604595986026740955}
   - {fileID: -36183248529391960}
@@ -41,6 +42,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   duration: 1
 --- !u!114 &-5205481120207702281
 MonoBehaviour:
@@ -57,10 +59,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f2e1a8ec5cfa72146843338ecafc72d2
-  position: {x: 481.3333, y: 371.6667}
+  position: {x: 432.66672, y: 346}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   message: 
 --- !u!114 &-5024124214420919962
 MonoBehaviour:
@@ -81,6 +84,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   duration: 1
 --- !u!114 &-4898381316606251747
 MonoBehaviour:
@@ -101,6 +105,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   message: one
 --- !u!114 &-4626307181184811475
 MonoBehaviour:
@@ -121,6 +126,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   message: two
 --- !u!114 &-3937475561598109297
 MonoBehaviour:
@@ -141,6 +147,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   child: {fileID: 8867038869276950961}
 --- !u!114 &-2604595986026740955
 MonoBehaviour:
@@ -161,6 +168,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   children:
   - {fileID: -4898381316606251747}
   - {fileID: -7508363355961155115}
@@ -187,6 +195,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   duration: 1
 --- !u!114 &-36183248529391960
 MonoBehaviour:
@@ -207,6 +216,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   children:
   - {fileID: -5205481120207702281}
 --- !u!114 &11400000
@@ -237,7 +247,7 @@ MonoBehaviour:
   - {fileID: -8010446484117926194}
   - {fileID: -5205481120207702281}
   blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToPosition: {x: 1, y: 2, z: 3}
     moveToObject: {fileID: 0}
 --- !u!114 &7535520499839451133
 MonoBehaviour:
@@ -258,6 +268,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: 
   message: three
 --- !u!114 &8867038869276950961
 MonoBehaviour:
@@ -278,4 +289,5 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
+  description: aaaaaaaaaaaaaaaaaaaaaaaaaaa
   child: {fileID: -8010446484117926194}

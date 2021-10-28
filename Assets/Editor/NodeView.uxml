@@ -14,6 +14,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:Label text="This is a description" display-tooltip-when-elided="true" name="description" />
                 <ui:VisualElement name="divider" class="horizontal" />
                 <ui:VisualElement name="output" />
             </ui:VisualElement>

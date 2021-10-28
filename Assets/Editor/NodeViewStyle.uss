@@ -68,6 +68,12 @@
     font-size: 14px;
 }
 
+#description {
+    font-size: 10px;
+    max-width: 150px;
+    white-space: normal;
+}
+
 #divider {
     min-height: 1px;
     background-color: rgb(111, 111, 111);
