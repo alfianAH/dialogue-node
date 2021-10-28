@@ -51,7 +51,6 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
     /// </summary>
     private void CreateOutputPorts()
     {
-        
         switch (node)
         {
             case ActionNode _:

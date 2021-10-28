@@ -131,7 +131,7 @@ public class BehaviourTree : ScriptableObject
         DecoratorNode decoratorNode = parent as DecoratorNode;
         if (decoratorNode != null && decoratorNode.child != null)
         {
-            children.Add(decoratorNode);
+            children.Add(decoratorNode.child);
         }
         
         CompositeNode compositeNode = parent as CompositeNode;

@@ -84,7 +84,7 @@ MonoBehaviour:
   started: 0
   guid: 2dcb3feba13bc2e48984fa998572d437
   position: {x: -369.32217, y: 81.33333}
-  child: {fileID: -2604595986026740955}
+  child: {fileID: 8867038869276950961}
 --- !u!114 &-2604595986026740955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,5 +181,5 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d4c07185a64f99144b333afc42c13cec
-  position: {x: 0, y: 0}
-  child: {fileID: 0}
+  position: {x: -203.41682, y: 81.33333}
+  child: {fileID: -2604595986026740955}

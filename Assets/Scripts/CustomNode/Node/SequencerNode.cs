@@ -1,6 +1,4 @@
-﻿using System;
-
-public class SequencerNode: CompositeNode
+﻿public class SequencerNode: CompositeNode
 {
     private int current;
     
@@ -9,10 +7,7 @@ public class SequencerNode: CompositeNode
         current = 0;
     }
 
-    protected override void OnStop()
-    {
-        
-    }
+    protected override void OnStop() { }
 
     protected override State OnUpdate()
     {
