@@ -136,4 +136,34 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
     {
         return left.position.x < right.position.x ? -1 : 1;
     }
+    
+    /// <summary>
+    /// Update node's class according to its state
+    /// </summary>
+    public void UpdateState()
+    {
+        RemoveFromClassList("running");
+        RemoveFromClassList("failure");
+        RemoveFromClassList("success");
+        
+        // If is in play mode, ...
+        if(Application.isPlaying)
+        {
+            switch (node.state)
+            {
+                case Node.State.Running:
+                    // If node is already started
+                    // Because the default state is running
+                    if(node.started)
+                        AddToClassList("running");
+                    break;
+                case Node.State.Failure:
+                    AddToClassList("failure");
+                    break;
+                case Node.State.Success:
+                    AddToClassList("success");
+                    break;
+            }
+        }
+    }
 }

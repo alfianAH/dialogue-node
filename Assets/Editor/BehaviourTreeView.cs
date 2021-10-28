@@ -219,4 +219,16 @@ public class BehaviourTreeView: GraphView
         };
         AddElement(nodeView);
     }
+    
+    /// <summary>
+    /// Update nodes' state
+    /// </summary>
+    public void UpdateNodeState()
+    {
+        nodes.ForEach(n =>
+        {
+            NodeView nodeView = n as NodeView;
+            nodeView?.UpdateState();
+        });
+    }
 }
