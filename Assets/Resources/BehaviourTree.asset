@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 533dbcf486f90b6409977cfe67c33914
-  position: {x: 157.92422, y: 134.66666}
+  position: {x: 26.704407, y: 294.30643}
   duration: 1
 --- !u!114 &-5024124214420919962
 MonoBehaviour:
@@ -32,7 +32,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0b6b0d2b382e20b4ab59641c6bf0de15
-  position: {x: 168.6666, y: 562.11536}
+  position: {x: 512.70447, y: 294.30643}
   duration: 1
 --- !u!114 &-4898381316606251747
 MonoBehaviour:
@@ -49,7 +49,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ab051941cfb82ff4b96278536fe78379
-  position: {x: 168.63422, y: 18.666664}
+  position: {x: -48.628906, y: 232.30646}
   message: one
 --- !u!114 &-4626307181184811475
 MonoBehaviour:
@@ -66,7 +66,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c69f7919d0bcfb242bd7c417efcdb32a
-  position: {x: 168.66673, y: 239.46063}
+  position: {x: 147.37111, y: 232.30646}
   message: 2
 --- !u!114 &-3937475561598109297
 MonoBehaviour:
@@ -83,7 +83,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2dcb3feba13bc2e48984fa998572d437
-  position: {x: -369.32217, y: 81.33333}
+  position: {x: 173.3711, y: -92.36027}
   child: {fileID: 8867038869276950961}
 --- !u!114 &-2604595986026740955
 MonoBehaviour:
@@ -100,13 +100,13 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0723000bd0670a04cb9bf99658145d02
-  position: {x: -45.550064, y: 81.333336}
+  position: {x: 173.3711, y: 81.63973}
   children:
-  - {fileID: -4898381316606251747}
   - {fileID: -7508363355961155115}
   - {fileID: -4626307181184811475}
   - {fileID: -2286109923583740309}
   - {fileID: 2683308918894543243}
+  - {fileID: -4898381316606251747}
   - {fileID: -5024124214420919962}
 --- !u!114 &-2286109923583740309
 MonoBehaviour:
@@ -123,7 +123,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 62a48a9d47727ca49afa936c38df9b89
-  position: {x: 168.66666, y: 343.127}
+  position: {x: 264.70447, y: 294.30643}
   duration: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -164,7 +164,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 08d9749b4ed63fb4bba4645ae95a9fff
-  position: {x: 168.66667, y: 451.9635}
+  position: {x: 362.70447, y: 232.30646}
   message: 3
 --- !u!114 &8867038869276950961
 MonoBehaviour:
@@ -181,5 +181,5 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d4c07185a64f99144b333afc42c13cec
-  position: {x: -203.41682, y: 81.33333}
+  position: {x: 173.3711, y: -3.6936111}
   child: {fileID: -2604595986026740955}
