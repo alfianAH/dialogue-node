@@ -9,6 +9,7 @@ public class BehaviourTree : ScriptableObject
     public Node rootNode;
     public Node.State treeState = Node.State.Running;
     public List<Node> nodes = new List<Node>();
+    public Blackboard blackboard = new Blackboard();
 
     public Node.State Update()
     {
@@ -188,6 +189,10 @@ public class BehaviourTree : ScriptableObject
         }
     }
     
+    /// <summary>
+    /// Clone behaviour tree
+    /// </summary>
+    /// <returns>Behaviour tree</returns>
     public BehaviourTree Clone()
     {
         BehaviourTree tree = Instantiate(this);
@@ -200,5 +205,16 @@ public class BehaviourTree : ScriptableObject
         });
         
         return tree;
+    }
+    
+    /// <summary>
+    /// Bind blackboard on node
+    /// </summary>
+    public void Bind()
+    {
+        Traverse(rootNode, node =>
+        {
+            node.blackboard = blackboard;
+        });
     }
 }

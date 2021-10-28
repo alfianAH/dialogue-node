@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -8,6 +7,10 @@ public class BehaviourTreeEditor : EditorWindow
 {
     private BehaviourTreeView treeView;
     private InspectorView inspectorView;
+    private IMGUIContainer blackboardView;
+
+    private SerializedObject treeObject;
+    private SerializedProperty blackboardProperty;
     
     [MenuItem("BehaviourTreeEditor/Editor ...")]
     public static void OpenWindow()
@@ -44,6 +47,15 @@ public class BehaviourTreeEditor : EditorWindow
 
         treeView = root.Q<BehaviourTreeView>();
         inspectorView = root.Q<InspectorView>();
+        blackboardView = root.Q<IMGUIContainer>();
+        
+        // Handle blackboard view
+        blackboardView.onGUIHandler = () =>
+        {
+            treeObject.Update();
+            EditorGUILayout.PropertyField(blackboardProperty);
+            treeObject.ApplyModifiedProperties();
+        };
 
         treeView.OnNodeSelected = OnNodeSelectionChanged;
 
@@ -100,9 +112,13 @@ public class BehaviourTreeEditor : EditorWindow
             }
         }
         
-        if (tree)
+        if (tree != null)
         {
             treeView.PopulateView(tree);
+            
+            // blackboard setup
+            treeObject = new SerializedObject(tree);
+            blackboardProperty = treeObject.FindProperty("blackboard");
         }
     }
     
