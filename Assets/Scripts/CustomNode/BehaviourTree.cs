@@ -37,8 +37,14 @@ public class BehaviourTree : ScriptableObject
         // Handle undo and redo when creating node
         Undo.RecordObject(this, "Behaviour Tree (CreatNode)");
         nodes.Add(node);
-        
-        AssetDatabase.AddObjectToAsset(node, this);
+
+        // If isn't in play mode, ...
+        if (!Application.isPlaying)
+        {
+            // Can add object to asset
+            AssetDatabase.AddObjectToAsset(node, this);
+        }
+
         Undo.RegisterCreatedObjectUndo(node, "Behaviour Tree (CreatNode)");
         
         AssetDatabase.SaveAssets();
