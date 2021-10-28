@@ -22,6 +22,29 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
 
         CreateInputPorts();
         CreateOutputPorts();
+        SetupClasses();
+    }
+    
+    /// <summary>
+    /// Set up class to each node to color it
+    /// </summary>
+    private void SetupClasses()
+    {
+        switch (node)
+        {
+            case ActionNode _:
+                AddToClassList("action");
+                break;
+            case CompositeNode _:
+                AddToClassList("composite");
+                break;
+            case DecoratorNode _:
+                AddToClassList("decorator");
+                break;
+            case RootNode _:
+                AddToClassList("root");
+                break;
+        }
     }
     
     /// <summary>

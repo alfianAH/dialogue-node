@@ -72,3 +72,20 @@
     min-height: 1px;
     background-color: rgba(111, 111, 111, 255);
 }
+
+.action #input {
+    background-color: rgba(152, 206, 0, 255);
+}
+
+.composite #input {
+    background-color: rgba(246, 174, 45, 255);
+}
+
+.decorator #input {
+    background-color: rgba(137, 166, 251, 255);
+}
+
+.root #input {
+    background-color: rgba(255, 81, 84, 255);
+    min-height: 20px;
+}
