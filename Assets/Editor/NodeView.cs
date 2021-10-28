@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class NodeView: UnityEditor.Experimental.GraphView.Node
 {
@@ -9,7 +10,7 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
     public Port input;
     public Port output;
     
-    public NodeView(Node node)
+    public NodeView(Node node): base("Assets/Editor/NodeView.uxml")
     {
         this.node = node;
         title = node.name;
@@ -33,7 +34,7 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
             case ActionNode _:
             case CompositeNode _:
             case DecoratorNode _:
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
                 break;
             case RootNode _:
                 break;
@@ -42,6 +43,7 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
         if (input != null)
         {
             input.portName = "";
+            input.style.flexDirection = FlexDirection.Column;
             inputContainer.Add(input);
         }
     }
@@ -56,17 +58,18 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
             case ActionNode _:
                 break;
             case CompositeNode _:
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
                 break;
             case RootNode _:
             case DecoratorNode _:
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
                 break;
         }
 
         if (output != null)
         {
             output.portName = "";
+            output.style.flexDirection = FlexDirection.ColumnReverse;
             outputContainer.Add(output);
         }
     }
