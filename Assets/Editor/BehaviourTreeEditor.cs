@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -49,9 +50,55 @@ public class BehaviourTreeEditor : EditorWindow
         OnSelectionChange();
     }
 
+    private void OnEnable()
+    {
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+    }
+    
+    /// <summary>
+    /// Handle behaviour tree editor on play mode state changed
+    /// </summary>
+    /// <param name="obj"></param>
+    private void OnPlayModeStateChanged(PlayModeStateChange obj)
+    {
+        switch (obj)
+        {
+            case PlayModeStateChange.EnteredEditMode:
+                OnSelectionChange();
+                break;
+            case PlayModeStateChange.ExitingEditMode:
+                OnSelectionChange();
+                break;
+            case PlayModeStateChange.EnteredPlayMode:
+                OnSelectionChange();
+                break;
+            case PlayModeStateChange.ExitingPlayMode:
+                break;
+        }
+    }
+
     private void OnSelectionChange()
     {
         BehaviourTree tree = Selection.activeObject as BehaviourTree;
+        
+        // Show behaviour tree in play mode
+        if (!tree)
+        {
+            if (Selection.activeGameObject)
+            {
+                BehaviourTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviourTreeRunner>();
+                if (runner)
+                {
+                    tree = runner.tree;
+                }
+            }
+        }
         
         if (tree)
         {

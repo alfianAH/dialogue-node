@@ -166,10 +166,33 @@ public class BehaviourTree : ScriptableObject
         return children;
     }
     
+    /// <summary>
+    /// Make node from root node to its children recursively
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="visiter"></param>
+    private void Traverse(Node node, Action<Node> visiter)
+    {
+        if (node)
+        {
+            visiter.Invoke(node);
+            var children = GetChildren(node);
+            
+            children.ForEach(n => Traverse(n, visiter));
+        }
+    }
+    
     public BehaviourTree Clone()
     {
         BehaviourTree tree = Instantiate(this);
         tree.rootNode = tree.rootNode.Clone();
+        tree.nodes = new List<Node>();
+        
+        Traverse(tree.rootNode, n =>
+        {
+            tree.nodes.Add(n);
+        });
+        
         return tree;
     }
 }
