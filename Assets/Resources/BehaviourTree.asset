@@ -268,7 +268,7 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
-  description: 
+  description: Debugging
   message: three
 --- !u!114 &8867038869276950961
 MonoBehaviour:
@@ -289,5 +289,5 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
-  description: aaaaaaaaaaaaaaaaaaaaaaaaaaa
+  description: This is a description but not a description really
   child: {fileID: -8010446484117926194}
