@@ -13,6 +13,6 @@ public class DialogueNode: DecoratorNode
 
     protected override State OnUpdate()
     {
-        return State.Running;
+        return State.Success;
     }
 }
