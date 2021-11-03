@@ -63,7 +63,7 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
             case ActionNode _:
             case CompositeNode _:
             case DecoratorNode _:
-                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
                 break;
             case RootNode _:
                 break;
@@ -72,7 +72,7 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
         if (input != null)
         {
             input.portName = "";
-            input.style.flexDirection = FlexDirection.Column;
+            input.style.flexDirection = FlexDirection.Row;
             inputContainer.Add(input);
         }
     }
@@ -87,18 +87,18 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
             case ActionNode _:
                 break;
             case CompositeNode _:
-                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
+                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
                 break;
             case RootNode _:
             case DecoratorNode _:
-                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
+                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
                 break;
         }
 
         if (output != null)
         {
             output.portName = "";
-            output.style.flexDirection = FlexDirection.ColumnReverse;
+            output.style.flexDirection = FlexDirection.RowReverse;
             outputContainer.Add(output);
         }
     }
@@ -127,19 +127,19 @@ public class NodeView: UnityEditor.Experimental.GraphView.Node
         CompositeNode compositeNode = node as CompositeNode;
         if (compositeNode != null)
         {
-            compositeNode.children.Sort(SortByHorizontalPosition);
+            compositeNode.children.Sort(SortByVerticalPosition);
         }
     }
     
     /// <summary>
-    /// Sort nodes by horizontal position 
+    /// Sort nodes by vertical position 
     /// </summary>
-    /// <param name="left">Left node</param>
-    /// <param name="right">Right node</param>
-    /// <returns>Returns -1 if left node's x  position less than right one, else 1</returns>
-    private int SortByHorizontalPosition(Node left, Node right)
+    /// <param name="above">Above node</param>
+    /// <param name="below">Below node</param>
+    /// <returns>Returns -1 if above node's y  position less than below one, else 1</returns>
+    private int SortByVerticalPosition(Node above, Node below)
     {
-        return left.position.x < right.position.x ? -1 : 1;
+        return above.position.y < below.position.y ? -1 : 1;
     }
     
     /// <summary>
