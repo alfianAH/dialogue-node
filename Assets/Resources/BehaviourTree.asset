@@ -15,12 +15,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b6b0b91fd9ad7fb4f9e7ee263de9d0b4
-  position: {x: 0, y: 0}
+  position: {x: 527.3333, y: 279.21234}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
   description: 
-  choices: []
+  choices:
+  - child: {fileID: 0}
+    choiceName: 
 --- !u!114 &-8010446484117926194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +48,7 @@ MonoBehaviour:
   - {fileID: -36183248529391960}
   - {fileID: -2604595986026740955}
   - {fileID: -2604595986026740955}
+  - {fileID: -8123160795519893386}
 --- !u!114 &-7508363355961155115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +202,7 @@ MonoBehaviour:
   - {fileID: -2286109923583740309}
   - {fileID: 7535520499839451133}
   - {fileID: -5024124214420919962}
+  - {fileID: -8123160795519893386}
 --- !u!114 &-2286109923583740309
 MonoBehaviour:
   m_ObjectHideFlags: 0

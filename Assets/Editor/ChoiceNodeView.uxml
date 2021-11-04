@@ -16,8 +16,9 @@
                 </ui:VisualElement>
                 <ui:Label text="This is a description" display-tooltip-when-elided="true" name="description" />
                 <ui:VisualElement name="divider" class="horizontal" />
-                <ui:TextField picking-mode="Ignore" label="Dialogue" />
-                <ui:Button text="Add Choice" display-tooltip-when-elided="true" />
+                <ui:Label text="Dialogue" display-tooltip-when-elided="true" name="title" />
+                <ui:Label text="Label" display-tooltip-when-elided="true" name="dialogue" />
+                <ui:Button text="Add Choice" display-tooltip-when-elided="true" name="add-choice-btn" />
                 <ui:VisualElement name="output" />
             </ui:VisualElement>
         </ui:VisualElement>
