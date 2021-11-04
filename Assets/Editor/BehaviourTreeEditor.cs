@@ -129,7 +129,7 @@ public class BehaviourTreeEditor : EditorWindow
     /// Update inspector view on node selection change
     /// </summary>
     /// <param name="nodeView">Selected node view</param>
-    private void OnNodeSelectionChanged(NodeView nodeView)
+    private void OnNodeSelectionChanged(INodeView nodeView)
     {
         inspectorView.UpdateSelection(nodeView);
     }

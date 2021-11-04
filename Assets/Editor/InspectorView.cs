@@ -13,7 +13,7 @@ public class InspectorView : VisualElement
     /// Update selection 
     /// </summary>
     /// <param name="nodeView"></param>
-    public void UpdateSelection(NodeView nodeView)
+    public void UpdateSelection(INodeView nodeView)
     {
         Clear(); // Clear previous selection
         

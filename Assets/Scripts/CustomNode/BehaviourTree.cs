@@ -101,6 +101,12 @@ public class BehaviourTree : ScriptableObject
             compositeNode.children.Add(child);
             EditorUtility.SetDirty(compositeNode);
         }
+        
+        // ChoiceNode choiceNode = parent as ChoiceNode;
+        // if (choiceNode != null)
+        // {
+        //     
+        // }
     }
     
     /// <summary>

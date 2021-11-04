@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class BehaviourTreeView: GraphView
 {
-    public Action<NodeView> OnNodeSelected; 
+    public Action<INodeView> OnNodeSelected; 
     public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
 
     private BehaviourTree tree;
@@ -70,9 +70,9 @@ public class BehaviourTreeView: GraphView
             children.ForEach(childNode =>
             {
                 // Get parent node view
-                NodeView parentView = FindNodeView(parentNode);
+                INodeView parentView = FindNodeView(parentNode);
                 // Get child node view
-                NodeView childView = FindNodeView(childNode);
+                INodeView childView = FindNodeView(childNode);
 
                 // Connect the child and the parent
                 Edge edge = parentView.output.ConnectTo(childView.input);
@@ -87,9 +87,9 @@ public class BehaviourTreeView: GraphView
     /// </summary>
     /// <param name="node">Node from Editor</param>
     /// <returns>NodeView</returns>
-    private NodeView FindNodeView(Node node)
+    private INodeView FindNodeView(Node node)
     {
-        return GetNodeByGuid(node.guid) as NodeView;
+        return GetNodeByGuid(node.guid) as INodeView;
     }
     
     /// <summary>
@@ -116,7 +116,7 @@ public class BehaviourTreeView: GraphView
         {
             // Remove nodes
             // If elem as node view is not null, ...
-            if (elem is NodeView nodeView)
+            if (elem is INodeView nodeView)
             {
                 // Delete node
                 tree.DeleteNode(nodeView.node);
@@ -128,8 +128,8 @@ public class BehaviourTreeView: GraphView
             {
                 // If edge's output node as node view (parent) and 
                 // edge's input node as node view (child) are not null
-                if(edge.output.node is NodeView parentView && 
-                   edge.input.node is NodeView childView)
+                if(edge.output.node is INodeView parentView && 
+                   edge.input.node is INodeView childView)
                 {
                     // Remove child
                     tree.RemoveChild(parentView.node, childView.node);
@@ -141,8 +141,8 @@ public class BehaviourTreeView: GraphView
         {
             // If edge's output node as node view (parent) and 
             // edge's input node as node view (child) are not null
-            if(edge.output.node is NodeView parentView && 
-               edge.input.node is NodeView childView)
+            if(edge.output.node is INodeView parentView && 
+               edge.input.node is INodeView childView)
             {
                 // Add child 
                 tree.AddChild(parentView.node, childView.node);
@@ -155,7 +155,7 @@ public class BehaviourTreeView: GraphView
             // Sort all children nodes
             nodes.ForEach(n =>
             {
-                NodeView nodeView = n as NodeView;
+                INodeView nodeView = n as INodeView;
 
                 nodeView?.SortChildren();
             });
@@ -195,6 +195,16 @@ public class BehaviourTreeView: GraphView
                     action => CreateNode(type));
             }
         }
+        
+        // Decorator nodes
+        {
+            var types = TypeCache.GetTypesDerivedFrom<ChoiceNode>();
+            foreach (var type in types)
+            {
+                evt.menu.AppendAction($"[{type.BaseType?.Name}] {type.Name}", 
+                    action => CreateNode(type));
+            }
+        }
     }
     
     /// <summary>
@@ -213,10 +223,21 @@ public class BehaviourTreeView: GraphView
     /// <param name="node"></param>
     private void CreateNodeView(Node node)
     {
-        NodeView nodeView = new NodeView(node)
+        INodeView nodeView = new NodeView(node)
         {
             OnNodeSelected = OnNodeSelected
         };
+        
+        switch (node)
+        {
+            case ChoiceNode choiceNode:
+                nodeView = new ChoiceNodeView(node)
+                {
+                    OnNodeSelected = OnNodeSelected
+                };
+                break;
+        }
+        
         AddElement(nodeView);
     }
     
