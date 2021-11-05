@@ -5,17 +5,21 @@ using UnityEngine.UIElements;
 
 public class ChoiceNodeView: INodeView
 {
-    public ChoiceNodeView(Node node) : base("Assets/Editor/ChoiceNodeView.uxml")
+    private ChoiceNode choiceNode;
+    
+    public ChoiceNodeView(ChoiceNode node) : base("Assets/Editor/ChoiceNodeView.uxml")
     {
         this.node = node;
+        choiceNode = node;
         title = node.name;
         viewDataKey = node.guid;
         
         // Set position
         style.left = node.position.x;
         style.top = node.position.y;
-
+        
         CreateInputPorts();
+        GenerateChoiceList();
         // CreateOutputPorts();
         SetupClasses();
 
@@ -25,6 +29,26 @@ public class ChoiceNodeView: INodeView
         
         Button addChoiceBtn = this.Q<Button>("add-choice-btn");
         addChoiceBtn.clicked += () => { AddChoicePort(); };
+    }
+    
+    /// <summary>
+    /// Generate choice list
+    /// </summary>
+    private void GenerateChoiceList()
+    {
+        // If there are no choices, return
+        if (choiceNode.choices.Count < 0) return;
+        
+        // Generate choices
+        foreach (Choice choice in choiceNode.choices)
+        {
+            // Generate port
+            var generatedPort = GeneratePort(this, Direction.Output);
+            generatedPort.portName = choice.choiceSentence;
+
+            outputContainer.Add(generatedPort);
+            RefreshPorts();
+        }
     }
     
     /// <summary>
@@ -57,17 +81,12 @@ public class ChoiceNodeView: INodeView
             ? $"Choice {outputPortCount + 1}"
             : overiddenPortName;
         
-        // Generate label
-        var choiceLabel = new Label
-        {
-            name = choicePortName,
-        };
-        
-        generatedPort.contentContainer.Add(choiceLabel);
         outputContainer.Add(generatedPort);
         RefreshPorts();
         
+        choiceNode.choices.Add(new Choice());
         
+        generatedPort.portName = choicePortName;
 
         // Add delete choice button
         // var deleteButton = new Button(() => RemovePort(choiceNode, generatedPort))

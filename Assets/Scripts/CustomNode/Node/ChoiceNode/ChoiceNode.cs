@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class ChoiceNode: Node
 {
@@ -10,7 +11,8 @@ public abstract class ChoiceNode: Node
         ChoiceNode node = Instantiate(this);
         node.choices.ForEach(choice =>
         {
-            choice.child.Clone();
+            if(choice.child != null)
+                choice.child.Clone();
         });
         return node;
     }
@@ -20,5 +22,6 @@ public abstract class ChoiceNode: Node
 public class Choice
 {
     public Node child;
-    public string choiceName;
+    [TextArea(1,2)]
+    public string choiceSentence;
 }

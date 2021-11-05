@@ -83,6 +83,12 @@
     white-space: normal;
 }
 
+.choice .port #type {
+    white-space: normal;
+    max-width: 200px;
+    overflow: hidden;
+}
+
 #divider {
     min-height: 1px;
     background-color: rgb(111, 111, 111);

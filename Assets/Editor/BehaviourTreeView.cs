@@ -231,7 +231,7 @@ public class BehaviourTreeView: GraphView
         switch (node)
         {
             case ChoiceNode choiceNode:
-                nodeView = new ChoiceNodeView(node)
+                nodeView = new ChoiceNodeView(choiceNode)
                 {
                     OnNodeSelected = OnNodeSelected
                 };
