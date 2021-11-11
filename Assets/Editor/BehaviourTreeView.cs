@@ -66,9 +66,6 @@ public class BehaviourTreeView: GraphView
         {
             // Get children of parent node
             var children = tree.GetChildren(parentNode);
-            Debug.Log("Parent: " + parentNode.guid);
-            Debug.Log(children.Count);
-
             int i = 0;
             
             // Get parent node view
@@ -83,8 +80,6 @@ public class BehaviourTreeView: GraphView
                 // If child view is not null, ...
                 if(childView != null)
                 {
-                    Debug.Log("Child: " + childNode.guid);
-                    
                     // Connect the child and the parent
                     if (parentView.output != null)
                     {
@@ -146,26 +141,28 @@ public class BehaviourTreeView: GraphView
     {
         graphViewChange.elementsToRemove?.ForEach(elem =>
         {
-            // Remove nodes
-            // If elem as node view is not null, ...
-            if (elem is INodeView nodeView)
+            switch (elem)
             {
-                // Delete node
-                tree.DeleteNode(nodeView.node);
-            }
-            
-            // Remove edges
-            // If elem as edge is not null, ...
-            if (elem is Edge edge)
-            {
-                // If edge's output node as node view (parent) and 
-                // edge's input node as node view (child) are not null
-                if(edge.output.node is INodeView parentView && 
-                   edge.input.node is INodeView childView)
-                {
-                    // Remove child
-                    tree.RemoveChild(parentView.node, childView.node);
-                }
+                // Remove nodes
+                // If elem as node view is not null, ...
+                case INodeView nodeView:
+                    // Delete node
+                    tree.DeleteNode(nodeView.node);
+                    break;
+                
+                // Remove edges
+                // If elem as edge is not null, ...
+                case Edge edge:
+                    // If edge's output node as node view (parent) and 
+                    // edge's input node as node view (child) are not null
+                    if(edge.output.node is INodeView parentView && 
+                       edge.input.node is INodeView childView)
+                    {
+                        // Remove child
+                        tree.RemoveChild(parentView.node, childView.node);
+                    }
+
+                    break;
             }
         });
 

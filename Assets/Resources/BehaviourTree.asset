@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8280889019855003557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d1937276cd4ff7ab3de1809a9034e7, type: 3}
+  m_Name: DialogueWithChoiceNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: dbbfedfb30ef0684aa594cd7ca081e96
+  position: {x: 323.33334, y: 249.33336}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: 
+  choices:
+  - choiceName: Choice 2
+    child: {fileID: 0}
+    choiceSentence: 
+  - choiceName: Choice 3
+    child: {fileID: 0}
+    choiceSentence: 
 --- !u!114 &-8010446484117926194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +296,7 @@ MonoBehaviour:
   - {fileID: 3229792735435319635}
   - {fileID: -863473717140188465}
   - {fileID: 3007734195879771939}
+  - {fileID: -8280889019855003557}
   blackboard:
     moveToPosition: {x: 1, y: 2, z: 3}
     moveToObject: {fileID: 0}

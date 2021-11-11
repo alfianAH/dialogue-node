@@ -1,6 +1,8 @@
-﻿using UnityEditor;
+﻿using System.Linq;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ChoiceNodeView: INodeView
@@ -19,8 +21,6 @@ public class ChoiceNodeView: INodeView
         style.top = node.position.y;
         
         CreateInputPorts();
-        // GenerateChoiceList();
-        // CreateOutputPorts();
         SetupClasses();
 
         Label descriptionLabel = this.Q<Label>("description");
@@ -46,6 +46,7 @@ public class ChoiceNodeView: INodeView
         // Generate port
         var generatedPort = GeneratePort(Direction.Output);
         generatedPort.portName = choice.choiceName;
+        AddDeleteButton(generatedPort);
         Edge edge = generatedPort.ConnectTo(childView.input);
         
         RefreshPorts();
@@ -104,7 +105,7 @@ public class ChoiceNodeView: INodeView
         generatedPort.portName = choicePortName;
         
         AddDeleteButton(generatedPort);
-        Outputs.Add(generatedPort);
+        // Outputs.Add(generatedPort);
         RefreshPorts();
     }
     
@@ -128,8 +129,24 @@ public class ChoiceNodeView: INodeView
     /// <param name="generatedPort"></param>
     private void RemovePort(Port generatedPort)
     {
+        var targetEdge = generatedPort.connections.ToList();
+        // If there are any edges, ...
+        if(targetEdge.Any())
+        {
+            // Disconnect edge
+            Edge edge = targetEdge.First();
+            generatedPort.Disconnect(edge);
+        }
+        
         outputContainer.Remove(generatedPort);
         RefreshPorts();
+        
+        foreach (var choice in choiceNode.choices.Where(
+            choice => choice.choiceName == generatedPort.portName))
+        {
+            choiceNode.choices.Remove(choice);
+            break;
+        }
     }
 
     protected override void SetupClasses()

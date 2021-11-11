@@ -166,9 +166,10 @@ public class BehaviourTree : ScriptableObject
         {
             // Handle undo and redo for composite node
             Undo.RecordObject(choiceNode, "Behaviour Tree (RemoveChild)");
+            
+            // Loop through choices that have child
             foreach (var c in choiceNode.choices.Where(choice => choice.child != null))
             {
-                Debug.Log(c.child.guid);
                 if (c.child.guid == child.guid)
                 {
                     c.child = null;
