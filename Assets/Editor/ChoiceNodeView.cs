@@ -1,6 +1,8 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ChoiceNodeView: INodeView
@@ -19,7 +21,7 @@ public class ChoiceNodeView: INodeView
         style.top = node.position.y;
         
         CreateInputPorts();
-        GenerateChoiceList();
+        // GenerateChoiceList();
         // CreateOutputPorts();
         SetupClasses();
 
@@ -34,35 +36,35 @@ public class ChoiceNodeView: INodeView
     /// <summary>
     /// Generate choice list
     /// </summary>
-    private void GenerateChoiceList()
+    /// <param name="i"></param>
+    /// <param name="childView"></param>
+    public Edge GenerateChoiceList(int i, INodeView childView)
     {
         // If there are no choices, return
-        if (choiceNode.choices.Count < 0) return;
-        
-        // Generate choices
-        foreach (Choice choice in choiceNode.choices)
-        {
-            // Generate port
-            var generatedPort = GeneratePort(this, Direction.Output);
-            generatedPort.portName = choice.choiceSentence;
+        if (choiceNode.choices.Count < 0) return null;
 
-            outputContainer.Add(generatedPort);
-            RefreshPorts();
-        }
+        Choice choice = choiceNode.choices[i];
+        
+        // Generate port
+        var generatedPort = GeneratePort(Direction.Output);
+        generatedPort.portName = choice.choiceSentence;
+        Edge edge = generatedPort.ConnectTo(childView.input);
+        
+        outputContainer.Add(generatedPort);
+        RefreshPorts();
+        return edge;
     }
     
     /// <summary>
     /// Generate port in the node
     /// </summary>
-    /// <param name="node">Node</param>
     /// <param name="portDirection">Port direction</param>
     /// <param name="capacity">The capacity of the port</param>
     /// <returns>The instantiated port in the node</returns>
-    private Port GeneratePort(ChoiceNodeView node,
-        Direction portDirection,
+    private Port GeneratePort(Direction portDirection,
         Port.Capacity capacity = Port.Capacity.Single)
     {
-        return node.InstantiatePort(Orientation.Horizontal, portDirection, capacity, typeof(float));
+        return InstantiatePort(Orientation.Horizontal, portDirection, capacity, typeof(float));
     }
     
     /// <summary>
@@ -72,7 +74,7 @@ public class ChoiceNodeView: INodeView
     private void AddChoicePort(string overiddenPortName = "")
     {
         // Generate port
-        var generatedPort = GeneratePort(this, Direction.Output);
+        var generatedPort = GeneratePort(Direction.Output);
         
         var outputPortCount = outputContainer.Query("connector").ToList().Count;
         
@@ -81,25 +83,28 @@ public class ChoiceNodeView: INodeView
             ? $"Choice {outputPortCount + 1}"
             : overiddenPortName;
         
-        outputContainer.Add(generatedPort);
-        RefreshPorts();
-        
         choiceNode.choices.Add(new Choice());
         
         generatedPort.portName = choicePortName;
 
         // Add delete choice button
-        // var deleteButton = new Button(() => RemovePort(choiceNode, generatedPort))
+        // var deleteButton = new Button(() => RemovePort(generatedPort))
         // {
         //     text = "X"
         // };
         // generatedPort.contentContainer.Add(deleteButton);
         //
-        // generatedPort.portName = choicePortName;
-        //
         // // Add generated port to node
-        // choiceNode.outputContainer.Add(generatedPort);
+        outputContainer.Add(generatedPort);
+        Outputs.Add(generatedPort);
+        
+        RefreshPorts();
     }
+
+    // private void RemovePort(Port generatedPort)
+    // {
+    //     outputContainer.Remove(generatedPort);
+    // }
 
     protected override void SetupClasses()
     {

@@ -22,8 +22,6 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: -36183248529391960}
-  - {fileID: -36183248529391960}
-  - {fileID: -2604595986026740955}
   - {fileID: -2604595986026740955}
 --- !u!114 &-7508363355961155115
 MonoBehaviour:
@@ -46,27 +44,6 @@ MonoBehaviour:
     moveToObject: {fileID: 0}
   description: 
   duration: 1
---- !u!114 &-5686979305454114460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d1937276cd4ff7ab3de1809a9034e7, type: 3}
-  m_Name: DialogueWithChoiceNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 79fffaf897ae6264da788c0dceabea77
-  position: {x: 0, y: 0}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-  description: 
-  choices: []
 --- !u!114 &-5205481120207702281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +59,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: f2e1a8ec5cfa72146843338ecafc72d2
-  position: {x: 756.49524, y: -180.66669}
+  position: {x: 756.6667, y: -180.66663}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
@@ -124,7 +101,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: ab051941cfb82ff4b96278536fe78379
-  position: {x: 756.66656, y: -35.99999}
+  position: {x: 757.3333, y: -22.666687}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
@@ -187,7 +164,7 @@ MonoBehaviour:
   state: 0
   started: 1
   guid: 0723000bd0670a04cb9bf99658145d02
-  position: {x: 527.3331, y: 79.33332}
+  position: {x: 527.3333, y: 79.99996}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
@@ -220,6 +197,27 @@ MonoBehaviour:
     moveToObject: {fileID: 0}
   description: 
   duration: 1
+--- !u!114 &-863473717140188465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: baf588892ea93f74ea84a84076eca449
+  position: {x: 575, y: 337.00003}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: 
+  message: 
 --- !u!114 &-36183248529391960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,13 +233,12 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 0dac1c2fec5b09e4fafd9ae62bc94ccb
-  position: {x: 527.2247, y: -129.46616}
+  position: {x: 527.3333, y: -129.33336}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
   description: 
   children:
-  - {fileID: -5205481120207702281}
   - {fileID: -5205481120207702281}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -270,10 +267,60 @@ MonoBehaviour:
   - {fileID: -36183248529391960}
   - {fileID: -8010446484117926194}
   - {fileID: -5205481120207702281}
-  - {fileID: -5686979305454114460}
+  - {fileID: 3229792735435319635}
+  - {fileID: -863473717140188465}
+  - {fileID: 7066166563414127763}
   blackboard:
     moveToPosition: {x: 1, y: 2, z: 3}
     moveToObject: {fileID: 0}
+--- !u!114 &3229792735435319635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2e149fb16242a8af0fcba674c4fbf5, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 019576ec26b421e48a05ac9b44086ad8
+  position: {x: 575.3333, y: 259.99997}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: 
+  duration: 1
+--- !u!114 &7066166563414127763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d1937276cd4ff7ab3de1809a9034e7, type: 3}
+  m_Name: DialogueWithChoiceNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 60a62dc283d9e5b49942213acd969c97
+  position: {x: 335.33325, y: 222.66669}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: 
+  choices:
+  - child: {fileID: 3229792735435319635}
+    choiceSentence: 
+  - child: {fileID: -863473717140188465}
+    choiceSentence: 
+  - child: {fileID: 0}
+    choiceSentence: 
 --- !u!114 &7535520499839451133
 MonoBehaviour:
   m_ObjectHideFlags: 0

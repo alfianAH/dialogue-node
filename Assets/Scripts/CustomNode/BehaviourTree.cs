@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -102,11 +103,22 @@ public class BehaviourTree : ScriptableObject
             EditorUtility.SetDirty(compositeNode);
         }
         
-        // ChoiceNode choiceNode = parent as ChoiceNode;
-        // if (choiceNode != null)
-        // {
-        //     
-        // }
+        // Add choice node's child
+        ChoiceNode choiceNode = parent as ChoiceNode;
+        if (choiceNode != null)
+        {
+            // Handle undo and redo for composite node
+            Undo.RecordObject(choiceNode, "Behaviour Tree (AddChild)");
+            // Get choice port that doesn't have child
+            var choice = choiceNode.choices.Where(c => 
+                c.child == null).ToList();
+            
+            if (choice.Count > 0)
+            {
+                choice[0].child = child;
+            }
+            EditorUtility.SetDirty(choiceNode);
+        }
     }
     
     /// <summary>
@@ -146,6 +158,20 @@ public class BehaviourTree : ScriptableObject
             compositeNode.children.Remove(child);
             EditorUtility.SetDirty(compositeNode);
         }
+        
+        // Remove choice node's child
+        ChoiceNode choiceNode = parent as ChoiceNode;
+        if (choiceNode != null)
+        {
+            // Handle undo and redo for composite node
+            Undo.RecordObject(choiceNode, "Behaviour Tree (RemoveChild)");
+            var choiceChild = choiceNode.choices.Where(c => c.child.guid == child.guid).ToList();
+            
+            if (choiceChild.Count == 1)
+                choiceChild[0].child = null;
+            
+            EditorUtility.SetDirty(choiceNode);
+        }
     }
     
     /// <summary>
@@ -174,6 +200,17 @@ public class BehaviourTree : ScriptableObject
         if (compositeNode != null)
         {
             return compositeNode.children;
+        }
+        
+        ChoiceNode choiceNode = parent as ChoiceNode;
+        if (choiceNode != null)
+        {
+            choiceNode.choices.ForEach(c =>
+            {
+                // Add choice that only have child
+                if(c.child != null)
+                    children.Add(c.child);
+            });
         }
 
         return children;

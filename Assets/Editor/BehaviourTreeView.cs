@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BehaviourTreeView: GraphView
@@ -65,19 +66,39 @@ public class BehaviourTreeView: GraphView
         {
             // Get children of parent node
             var children = tree.GetChildren(parentNode);
+            Debug.Log("Parent: " + parentNode.guid);
+            Debug.Log(children.Count);
+            Debug.Log("a");
+
+            int i = 0;
+            
+            // Get parent node view
+            INodeView parentView = FindNodeView(parentNode);
             
             // Loop through children nodes
             children.ForEach(childNode =>
             {
-                // Get parent node view
-                INodeView parentView = FindNodeView(parentNode);
                 // Get child node view
                 INodeView childView = FindNodeView(childNode);
+                
+                Debug.Log("Child: " + childNode.guid);
 
                 // Connect the child and the parent
-                Edge edge = parentView.output.ConnectTo(childView.input);
+                if(parentView.output != null)
+                {
+                    Edge edge = parentView.output.ConnectTo(childView.input);
+                    AddElement(edge);
+                }
+                else
+                {
+                    ChoiceNodeView choiceNodeView = parentView as ChoiceNodeView;
+                    Edge edge = choiceNodeView?.GenerateChoiceList(i, childView);
+                    if(edge != null)
+                        AddElement(edge);
+                    i++;
+                }
 
-                AddElement(edge);
+                // AddElement(edge);
             });
         });
     }
@@ -196,7 +217,7 @@ public class BehaviourTreeView: GraphView
             }
         }
         
-        // Decorator nodes
+        // Choice nodes
         {
             var types = TypeCache.GetTypesDerivedFrom<ChoiceNode>();
             foreach (var type in types)

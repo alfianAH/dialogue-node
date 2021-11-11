@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -10,6 +11,7 @@ public abstract class INodeView: UnityEditor.Experimental.GraphView.Node
     public Node node;
     public Port input;
     public Port output;
+    public List<Port> Outputs = new List<Port>();
     
     /// <summary>
     /// Update node's class according to its state
