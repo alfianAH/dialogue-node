@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ChoiceNodeView: INodeView
@@ -68,6 +66,7 @@ public class ChoiceNodeView: INodeView
         // Generate port
         var generatedPort = GeneratePort(Direction.Output);
         generatedPort.portName = choice.choiceName;
+        AddDeleteButton(generatedPort);
         
         RefreshPorts();
     }
@@ -101,28 +100,37 @@ public class ChoiceNodeView: INodeView
         var choicePortName = string.IsNullOrEmpty(overiddenPortName)
             ? $"Choice {outputPortCount}"
             : overiddenPortName;
-        
         choiceNode.choices.Add(new Choice{choiceName = choicePortName});
-        
         generatedPort.portName = choicePortName;
-
-        // Add delete choice button
-        // var deleteButton = new Button(() => RemovePort(generatedPort))
-        // {
-        //     text = "X"
-        // };
-        // generatedPort.contentContainer.Add(deleteButton);
-        //
-        // // Add generated port to node
-        Outputs.Add(generatedPort);
         
+        AddDeleteButton(generatedPort);
+        Outputs.Add(generatedPort);
         RefreshPorts();
     }
-
-    // private void RemovePort(Port generatedPort)
-    // {
-    //     outputContainer.Remove(generatedPort);
-    // }
+    
+    /// <summary>
+    /// Add delete button to delete generated port
+    /// </summary>
+    /// <param name="generatedPort"></param>
+    private void AddDeleteButton(Port generatedPort)
+    {
+        // Add delete choice button
+        var deleteButton = new Button(() => RemovePort(generatedPort))
+        {
+            text = "X"
+        };
+        generatedPort.contentContainer.Add(deleteButton);
+    }
+    
+    /// <summary>
+    /// Remove port from node
+    /// </summary>
+    /// <param name="generatedPort"></param>
+    private void RemovePort(Port generatedPort)
+    {
+        outputContainer.Remove(generatedPort);
+        RefreshPorts();
+    }
 
     protected override void SetupClasses()
     {
