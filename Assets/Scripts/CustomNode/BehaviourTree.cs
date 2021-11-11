@@ -208,8 +208,8 @@ public class BehaviourTree : ScriptableObject
             choiceNode.choices.ForEach(c =>
             {
                 // Add choice that only have child
-                if(c.child != null)
-                    children.Add(c.child);
+                // if(c.child != null)
+                children.Add(c.child);
             });
         }
 

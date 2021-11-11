@@ -50,7 +50,6 @@ public class ChoiceNodeView: INodeView
         generatedPort.portName = choice.choiceSentence;
         Edge edge = generatedPort.ConnectTo(childView.input);
         
-        outputContainer.Add(generatedPort);
         RefreshPorts();
         return edge;
     }
@@ -61,10 +60,12 @@ public class ChoiceNodeView: INodeView
     /// <param name="portDirection">Port direction</param>
     /// <param name="capacity">The capacity of the port</param>
     /// <returns>The instantiated port in the node</returns>
-    private Port GeneratePort(Direction portDirection,
+    public Port GeneratePort(Direction portDirection,
         Port.Capacity capacity = Port.Capacity.Single)
     {
-        return InstantiatePort(Orientation.Horizontal, portDirection, capacity, typeof(float));
+        Port generatedPort = InstantiatePort(Orientation.Horizontal, portDirection, capacity, typeof(float));
+        outputContainer.Add(generatedPort);
+        return generatedPort;
     }
     
     /// <summary>
@@ -95,7 +96,6 @@ public class ChoiceNodeView: INodeView
         // generatedPort.contentContainer.Add(deleteButton);
         //
         // // Add generated port to node
-        outputContainer.Add(generatedPort);
         Outputs.Add(generatedPort);
         
         RefreshPorts();

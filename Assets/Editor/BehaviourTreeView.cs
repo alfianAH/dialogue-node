@@ -68,7 +68,6 @@ public class BehaviourTreeView: GraphView
             var children = tree.GetChildren(parentNode);
             Debug.Log("Parent: " + parentNode.guid);
             Debug.Log(children.Count);
-            Debug.Log("a");
 
             int i = 0;
             
@@ -81,24 +80,32 @@ public class BehaviourTreeView: GraphView
                 // Get child node view
                 INodeView childView = FindNodeView(childNode);
                 
-                Debug.Log("Child: " + childNode.guid);
-
-                // Connect the child and the parent
-                if(parentView.output != null)
+                // If child view is not null, ...
+                if(childView != null)
                 {
-                    Edge edge = parentView.output.ConnectTo(childView.input);
-                    AddElement(edge);
+                    Debug.Log("Child: " + childNode.guid);
+                    
+                    // Connect the child and the parent
+                    if (parentView.output != null)
+                    {
+                        Edge edge = parentView.output.ConnectTo(childView.input);
+                        AddElement(edge);
+                    }
+                    else
+                    {
+                        ChoiceNodeView choiceNodeView = parentView as ChoiceNodeView;
+                        Edge edge = choiceNodeView?.GenerateChoiceList(i, childView);
+                        if (edge != null)
+                            AddElement(edge);
+                        i++;
+                    }
                 }
+                // Choice node doesn't have child yet
                 else
                 {
                     ChoiceNodeView choiceNodeView = parentView as ChoiceNodeView;
-                    Edge edge = choiceNodeView?.GenerateChoiceList(i, childView);
-                    if(edge != null)
-                        AddElement(edge);
-                    i++;
+                    choiceNodeView?.GeneratePort(Direction.Output);
                 }
-
-                // AddElement(edge);
             });
         });
     }
@@ -110,7 +117,10 @@ public class BehaviourTreeView: GraphView
     /// <returns>NodeView</returns>
     private INodeView FindNodeView(Node node)
     {
-        return GetNodeByGuid(node.guid) as INodeView;
+        if (node != null)
+            return GetNodeByGuid(node.guid) as INodeView;
+        
+        return null;
     }
     
     /// <summary>
@@ -157,6 +167,8 @@ public class BehaviourTreeView: GraphView
                 }
             }
         });
+        
+        Debug.Log("a");
 
         graphViewChange.edgesToCreate?.ForEach(edge =>
         {

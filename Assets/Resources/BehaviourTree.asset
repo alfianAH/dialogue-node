@@ -22,7 +22,6 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: -36183248529391960}
-  - {fileID: -2604595986026740955}
 --- !u!114 &-7508363355961155115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,12 +312,12 @@ MonoBehaviour:
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
-  description: 
+  description: Testing satu dua tiga
   choices:
   - child: {fileID: 3229792735435319635}
-    choiceSentence: 
+    choiceSentence: testing hai
   - child: {fileID: -863473717140188465}
-    choiceSentence: 
+    choiceSentence: Halo
   - child: {fileID: 0}
     choiceSentence: 
 --- !u!114 &7535520499839451133
