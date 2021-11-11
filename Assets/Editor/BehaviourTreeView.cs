@@ -104,7 +104,8 @@ public class BehaviourTreeView: GraphView
                 else
                 {
                     ChoiceNodeView choiceNodeView = parentView as ChoiceNodeView;
-                    choiceNodeView?.GeneratePort(Direction.Output);
+                    choiceNodeView?.GenerateChoiceList(i);
+                    i++;
                 }
             });
         });
@@ -167,8 +168,6 @@ public class BehaviourTreeView: GraphView
                 }
             }
         });
-        
-        Debug.Log("a");
 
         graphViewChange.edgesToCreate?.ForEach(edge =>
         {
@@ -177,8 +176,8 @@ public class BehaviourTreeView: GraphView
             if(edge.output.node is INodeView parentView && 
                edge.input.node is INodeView childView)
             {
-                // Add child 
-                tree.AddChild(parentView.node, childView.node);
+                // Add child
+                tree.AddChild(parentView.node, childView.node, edge.output.portName);
             }
         });
         

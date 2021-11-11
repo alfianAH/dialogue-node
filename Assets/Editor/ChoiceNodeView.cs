@@ -34,7 +34,7 @@ public class ChoiceNodeView: INodeView
     }
     
     /// <summary>
-    /// Generate choice list
+    /// Generate choice port with edge
     /// </summary>
     /// <param name="i"></param>
     /// <param name="childView"></param>
@@ -47,11 +47,29 @@ public class ChoiceNodeView: INodeView
         
         // Generate port
         var generatedPort = GeneratePort(Direction.Output);
-        generatedPort.portName = choice.choiceSentence;
+        generatedPort.portName = choice.choiceName;
         Edge edge = generatedPort.ConnectTo(childView.input);
         
         RefreshPorts();
         return edge;
+    }
+    
+    /// <summary>
+    /// Generate choice port without edge
+    /// </summary>
+    /// <param name="i"></param>
+    public void GenerateChoiceList(int i)
+    {
+        // If there are no choices, return
+        if (choiceNode.choices.Count < 0) return;
+        
+        Choice choice = choiceNode.choices[i];
+        
+        // Generate port
+        var generatedPort = GeneratePort(Direction.Output);
+        generatedPort.portName = choice.choiceName;
+        
+        RefreshPorts();
     }
     
     /// <summary>
@@ -60,7 +78,7 @@ public class ChoiceNodeView: INodeView
     /// <param name="portDirection">Port direction</param>
     /// <param name="capacity">The capacity of the port</param>
     /// <returns>The instantiated port in the node</returns>
-    public Port GeneratePort(Direction portDirection,
+    private Port GeneratePort(Direction portDirection,
         Port.Capacity capacity = Port.Capacity.Single)
     {
         Port generatedPort = InstantiatePort(Orientation.Horizontal, portDirection, capacity, typeof(float));
@@ -81,10 +99,10 @@ public class ChoiceNodeView: INodeView
         
         // Make choice port Name
         var choicePortName = string.IsNullOrEmpty(overiddenPortName)
-            ? $"Choice {outputPortCount + 1}"
+            ? $"Choice {outputPortCount}"
             : overiddenPortName;
         
-        choiceNode.choices.Add(new Choice());
+        choiceNode.choices.Add(new Choice{choiceName = choicePortName});
         
         generatedPort.portName = choicePortName;
 

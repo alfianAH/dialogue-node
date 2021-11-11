@@ -67,14 +67,15 @@ public class BehaviourTree : ScriptableObject
         Undo.DestroyObjectImmediate(node);
         AssetDatabase.SaveAssets();
     }
-    
+
     /// <summary>
     /// Add child node to parent node (decorator and composite node)
     /// Note: Action node doesn't have child
     /// </summary>
     /// <param name="parent">Parent Node</param>
     /// <param name="child">Child node</param>
-    public void AddChild(Node parent, Node child)
+    /// <param name="portName">Choice Port name</param>
+    public void AddChild(Node parent, Node child, string portName="")
     {
         // Add root node's child
         RootNode rootNode = parent as RootNode;
@@ -109,9 +110,9 @@ public class BehaviourTree : ScriptableObject
         {
             // Handle undo and redo for composite node
             Undo.RecordObject(choiceNode, "Behaviour Tree (AddChild)");
-            // Get choice port that doesn't have child
+            // Get choice port that has the same name as port name
             var choice = choiceNode.choices.Where(c => 
-                c.child == null).ToList();
+                c.choiceName == portName).ToList();
             
             if (choice.Count > 0)
             {
@@ -165,10 +166,15 @@ public class BehaviourTree : ScriptableObject
         {
             // Handle undo and redo for composite node
             Undo.RecordObject(choiceNode, "Behaviour Tree (RemoveChild)");
-            var choiceChild = choiceNode.choices.Where(c => c.child.guid == child.guid).ToList();
-            
-            if (choiceChild.Count == 1)
-                choiceChild[0].child = null;
+            foreach (var c in choiceNode.choices.Where(choice => choice.child != null))
+            {
+                Debug.Log(c.child.guid);
+                if (c.child.guid == child.guid)
+                {
+                    c.child = null;
+                    break;
+                }
+            }
             
             EditorUtility.SetDirty(choiceNode);
         }

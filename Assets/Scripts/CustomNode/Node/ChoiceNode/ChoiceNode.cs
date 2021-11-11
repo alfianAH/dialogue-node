@@ -21,6 +21,7 @@ public abstract class ChoiceNode: Node
 [Serializable]
 public class Choice
 {
+    public string choiceName;
     public Node child;
     [TextArea(1,2)]
     public string choiceSentence;

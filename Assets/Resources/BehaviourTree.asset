@@ -268,10 +268,32 @@ MonoBehaviour:
   - {fileID: -5205481120207702281}
   - {fileID: 3229792735435319635}
   - {fileID: -863473717140188465}
-  - {fileID: 7066166563414127763}
+  - {fileID: 3007734195879771939}
+  - {fileID: 4361982573285302880}
   blackboard:
     moveToPosition: {x: 1, y: 2, z: 3}
     moveToObject: {fileID: 0}
+--- !u!114 &3007734195879771939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 67cbb2a5acb391a4fb087dfbf626eb2d
+  position: {x: 575.3333, y: 406.00003}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: 
+  message: 
 --- !u!114 &3229792735435319635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,13 +309,13 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 019576ec26b421e48a05ac9b44086ad8
-  position: {x: 575.3333, y: 259.99997}
+  position: {x: 575.3333, y: 246.66667}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
   description: 
   duration: 1
---- !u!114 &7066166563414127763
+--- !u!114 &4361982573285302880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,19 +329,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 60a62dc283d9e5b49942213acd969c97
-  position: {x: 335.33325, y: 222.66669}
+  guid: 971934f08a642834b9afcfea85ca6df5
+  position: {x: 0, y: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
-  description: Testing satu dua tiga
-  choices:
-  - child: {fileID: 3229792735435319635}
-    choiceSentence: testing hai
-  - child: {fileID: -863473717140188465}
-    choiceSentence: Halo
-  - child: {fileID: 0}
-    choiceSentence: 
+  description: 
+  choices: []
 --- !u!114 &7535520499839451133
 MonoBehaviour:
   m_ObjectHideFlags: 0
