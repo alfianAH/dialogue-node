@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: dbbfedfb30ef0684aa594cd7ca081e96
-  position: {x: 323.33334, y: 249.33336}
+  position: {x: 252, y: 246.66667}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
@@ -25,6 +25,12 @@ MonoBehaviour:
     child: {fileID: 0}
     choiceSentence: 
   - choiceName: Choice 3
+    child: {fileID: 0}
+    choiceSentence: 
+  - choiceName: Choice 4
+    child: {fileID: -863473717140188465}
+    choiceSentence: 
+  - choiceName: Choice 4
     child: {fileID: 0}
     choiceSentence: 
 --- !u!114 &-8010446484117926194

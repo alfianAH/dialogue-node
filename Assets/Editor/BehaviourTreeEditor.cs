@@ -50,15 +50,12 @@ public class BehaviourTreeEditor : EditorWindow
         blackboardView = root.Q<IMGUIContainer>();
         
         // Handle blackboard view
-        if(Application.isPlaying)
+        blackboardView.onGUIHandler = () =>
         {
-            blackboardView.onGUIHandler = () =>
-            {
-                treeObject.Update();
-                EditorGUILayout.PropertyField(blackboardProperty);
-                treeObject.ApplyModifiedProperties();
-            };
-        }
+            treeObject.Update();
+            EditorGUILayout.PropertyField(blackboardProperty);
+            treeObject.ApplyModifiedProperties();
+        };
 
         treeView.OnNodeSelected = OnNodeSelectionChanged;
 
