@@ -55,6 +55,8 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: -36183248529391960}
+  - {fileID: -2604595986026740955}
+  - {fileID: -8280889019855003557}
 --- !u!114 &-7508363355961155115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +248,7 @@ MonoBehaviour:
   guid: baf588892ea93f74ea84a84076eca449
   position: {x: 575, y: 337.00003}
   blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToPosition: {x: 1, y: 2, z: 3}
     moveToObject: {fileID: 0}
   description: 
   message: 
