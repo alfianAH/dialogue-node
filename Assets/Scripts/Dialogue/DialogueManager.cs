@@ -91,16 +91,11 @@ namespace Dialogue
         private IEnumerator ShowChoices()
         {
             List<Choice> choices = story.currentChoices;
-            float padding = 100;
-            float yPos = choices.Count * padding - padding;
 
             foreach (Choice choice in choices)
             {
                 ChoiceSelectable choiceButton = Instantiate(choiceButtonPrefab.gameObject, optionPanel.transform)
                     .GetComponent<ChoiceSelectable>();
-                
-                choiceButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, yPos);
-                yPos -= 200;
                 
                 choiceButton.SetChoiceText(choice.text);
                 choiceButton.element = choice;
