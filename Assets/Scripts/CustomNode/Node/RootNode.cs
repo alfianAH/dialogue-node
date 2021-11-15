@@ -1,12 +1,22 @@
-﻿public class RootNode: Node
+﻿using UnityEngine;
+
+public class RootNode: Node
 {
     public Node child;
-    protected override void OnStart() { }
 
-    protected override void OnStop() { }
+    protected override void OnStart()
+    {
+        Debug.Log("Root node: Start");
+    }
+
+    protected override void OnStop()
+    {
+        Debug.Log("Root node: Stop");
+    }
 
     protected override State OnUpdate()
     {
+        Debug.Log("Root node: Update");
         return child.Update();
     }
     

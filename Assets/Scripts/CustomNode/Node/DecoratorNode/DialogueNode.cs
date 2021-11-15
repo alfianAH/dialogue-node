@@ -7,15 +7,22 @@ public class DialogueNode: DecoratorNode
     [TextArea(3, 5)]
     public string dialogueText;
     public Sprite characterSprite;
-    
-    protected override void OnStart() { }
 
-    protected override void OnStop() { }
+    protected override void OnStart()
+    {
+        Debug.Log("Dialogue node: Start");
+    }
+
+    protected override void OnStop()
+    {
+        Debug.Log("Dialogue node: Stop");
+    }
 
     protected override State OnUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Next");
             return State.Success; // Return success
         }
 

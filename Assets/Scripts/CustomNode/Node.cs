@@ -7,7 +7,7 @@ public abstract class Node : ScriptableObject
         Running, Failure, Success
     }
 
-    [HideInInspector] public State state = State.Running;
+    public State state = State.Running;
     [HideInInspector] public bool started = false;
     public string guid;
     [HideInInspector] public Vector2 position;

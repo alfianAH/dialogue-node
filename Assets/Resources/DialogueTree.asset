@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8842581070722682059
+--- !u!114 &-8172850329504388647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,23 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf62ad4172243f697bc56a022858512, type: 3}
-  m_Name: DialogueNode
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 450ad6035e2b3ba4291c6386a7706ed0
-  position: {x: 858.6665, y: 88.000015}
+  guid: a54fa3d1fd14f064ebeba75b37f935d8
+  position: {x: 947.58813, y: -16.00002}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
-  description: 
-  child: {fileID: 0}
-  charaName: 
-  character: 0
-  dialogueText: Ga kenapa" kok
-  characterSprite: {fileID: 0}
---- !u!114 &-8148269470854637987
+  description: Done 1
+  message: Done 1
+--- !u!114 &-7962289587504645477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,22 +35,89 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: b8b7557d006a0fc499b25d5a2d3c671f
-  position: {x: 415, y: -12.666672}
+  guid: ed62e3e370170a24ba3d7819e7943181
+  position: {x: 435.1527, y: -0.000005722046}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
   description: 
   choices:
   - choiceName: Choice 1
-    child: {fileID: 4471193792461836448}
-    choiceSentence: Hai
+    child: {fileID: 203381890182797967}
+    choiceSentence: Haiii
   - choiceName: Choice 2
-    child: {fileID: 7436820246301697889}
-    choiceSentence: Hmph
+    child: {fileID: 5166411160917898197}
+    choiceSentence: Hngh
   - choiceName: Choice 3
-    child: {fileID: 781113614019961093}
-    choiceSentence: Ahn~
+    child: {fileID: 8636569176530026335}
+    choiceSentence: Achoo
+--- !u!114 &-6533688340047008646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3102863d49ea41e7bdeda333c9392caf, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 8629dc6900ca50a45b9f77e59ce61649
+  position: {x: 0, y: 0}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: 
+  child: {fileID: -3415522797727706088}
+--- !u!114 &-3556394879238499913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 003c5fd1ddde66a4a98def12e06d53dd
+  position: {x: 947.3334, y: 100.66669}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: Done 2
+  message: Done 2
+--- !u!114 &-3415522797727706088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf62ad4172243f697bc56a022858512, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 50f32ea90ca8892499399c1b650afe97
+  position: {x: 213.47997, y: 0.000030517578}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: 
+  child: {fileID: -7962289587504645477}
+  charaName: 
+  character: 0
+  dialogueText: Hai
+  characterSprite: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,23 +130,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d8fe63b1a4bafa38477a4ed308149, type: 3}
   m_Name: DialogueTree
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 6808005376316127685}
+  rootNode: {fileID: -6533688340047008646}
   treeState: 0
   nodes:
-  - {fileID: 0}
-  - {fileID: 6808005376316127685}
-  - {fileID: 8704083802534199221}
-  - {fileID: -8148269470854637987}
-  - {fileID: 4471193792461836448}
-  - {fileID: 7436820246301697889}
-  - {fileID: 781113614019961093}
-  - {fileID: 6009976346059819683}
-  - {fileID: -8842581070722682059}
-  - {fileID: 8983240302060332955}
+  - {fileID: -6533688340047008646}
+  - {fileID: -3415522797727706088}
+  - {fileID: -7962289587504645477}
+  - {fileID: 203381890182797967}
+  - {fileID: 5166411160917898197}
+  - {fileID: 8636569176530026335}
+  - {fileID: -8172850329504388647}
+  - {fileID: -3556394879238499913}
+  - {fileID: 4164041118430015620}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
---- !u!114 &781113614019961093
+--- !u!114 &203381890182797967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,68 +159,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 592780c4fc200ad4687b7fd27fb87593
-  position: {x: 667.3333, y: 194.57463}
+  guid: 5daa54293b0173c4e83cd5c124d35ace
+  position: {x: 715.01697, y: -15.741123}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
   description: 
-  child: {fileID: 8983240302060332955}
-  charaName: 
-  character: 1
-  dialogueText: Disapa malah sange?
-  characterSprite: {fileID: 0}
---- !u!114 &4471193792461836448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf62ad4172243f697bc56a022858512, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: bdc4d5b8404a1f24abaa4bdb1b4bfb75
-  position: {x: 667.3653, y: -12.666673}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-  description: 
-  child: {fileID: 6009976346059819683}
-  charaName: 
-  character: 1
-  dialogueText: Apa kabar?
-  characterSprite: {fileID: 0}
---- !u!114 &6009976346059819683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf62ad4172243f697bc56a022858512, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 39748d6d6bc4ff74fb80c36934cb73e2
-  position: {x: 858.9298, y: -12.66669}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-  description: 
-  child: {fileID: 0}
+  child: {fileID: -8172850329504388647}
   charaName: 
   character: 0
-  dialogueText: Baik.
+  dialogueText: apa kereba?
   characterSprite: {fileID: 0}
---- !u!114 &6808005376316127685
+--- !u!114 &4164041118430015620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,19 +179,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3102863d49ea41e7bdeda333c9392caf, type: 3}
-  m_Name: RootNode
+  m_Script: {fileID: 11500000, guid: 29c27246b67949e9928e50f2dd3c6f82, type: 3}
+  m_Name: DebugLogNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: e74d7af9fffb95f4fb9bd919173dccff
-  position: {x: 0, y: 0}
+  guid: a6c2fd13a926a704190405a758f7910f
+  position: {x: 947.3334, y: 230.00002}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
-  description: 
-  child: {fileID: 8704083802534199221}
---- !u!114 &7436820246301697889
+  description: Done 3
+  message: Done 3
+--- !u!114 &5166411160917898197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,64 +205,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: c4af7da42de6b5544abf085ee7ad19f0
-  position: {x: 667.3333, y: 88.00003}
+  guid: b4cee532a77ae7946b2f48c9cfafbf0d
+  position: {x: 715.3333, y: 100.66666}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
-  description: 
-  child: {fileID: -8842581070722682059}
-  charaName: 
-  character: 1
-  dialogueText: Kok cuek sih?
-  characterSprite: {fileID: 0}
---- !u!114 &8704083802534199221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf62ad4172243f697bc56a022858512, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: d465710be51acad43ab7bd67663fdbc2
-  position: {x: 203.31056, y: -0.000009536743}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-  description: 
-  child: {fileID: -8148269470854637987}
-  charaName: 
-  character: 1
-  dialogueText: Halo
-  characterSprite: {fileID: 0}
---- !u!114 &8983240302060332955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf62ad4172243f697bc56a022858512, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: c6a5f2a2ab9a07c47a4c2af6eba683c3
-  position: {x: 858.6666, y: 194.66664}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-  description: 
-  child: {fileID: 0}
+  description: hngggh
+  child: {fileID: -3556394879238499913}
   charaName: 
   character: 0
-  dialogueText: Tehe~
+  dialogueText: 
+  characterSprite: {fileID: 0}
+--- !u!114 &8636569176530026335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf62ad4172243f697bc56a022858512, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d2e934d9ae1d0b14ea921f0a5601f14e
+  position: {x: 715.3333, y: 230.19247}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  description: covid njir
+  child: {fileID: 4164041118430015620}
+  charaName: 
+  character: 0
+  dialogueText: 
   characterSprite: {fileID: 0}

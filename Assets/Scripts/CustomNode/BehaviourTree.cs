@@ -20,6 +20,8 @@ public class BehaviourTree : ScriptableObject
             // Update the tree state
             treeState = rootNode.Update();
         }
+        
+        Debug.Log($"State: {treeState}");
 
         return treeState;
     }
