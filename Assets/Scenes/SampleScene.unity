@@ -411,7 +411,7 @@ RectTransform:
   - {fileID: 706391019}
   - {fileID: 932597530}
   m_Father: {fileID: 1942469459}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -430,6 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e04b2e5ac590e0489550dbc1cd8edf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueFile: {fileID: 0}
   speakerName: {fileID: 105044959}
   dialogueText: {fileID: 1174328281}
   choiceButtonPrefab: {fileID: 820371515219101887, guid: 6512f45e49a8ec249b08087316181514, type: 3}
@@ -1124,7 +1125,7 @@ RectTransform:
   m_Children:
   - {fileID: 1024872276}
   m_Father: {fileID: 1942469459}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1353,8 +1354,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 402503591}
   - {fileID: 1794930103}
+  - {fileID: 402503591}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

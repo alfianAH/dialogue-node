@@ -8,13 +8,15 @@ namespace Dialogue
 {
     public class DialogueManager : SingletonBaseClass<DialogueManager>
     {
-        private TextAsset dialogueFile;
+        [SerializeField] private TextAsset dialogueFile;
         [SerializeField] private Text speakerName;
         [SerializeField] private Text dialogueText;
         [SerializeField] private ChoiceSelectable choiceButtonPrefab;
         [SerializeField] private GameObject optionPanel;
+        [SerializeField] private Image portraitPrefab;
+        [SerializeField] private GameObject portraitHolder;
 
-        private bool isTalking = false;
+        private bool firstTime = true;
         private static Choice choiceSelected;
         private static Story story;
         private List<string> tags;
@@ -27,13 +29,20 @@ namespace Dialogue
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (firstTime || Input.GetMouseButtonDown(0))
             {
+                firstTime = false;
                 Debug.Log(story.currentChoices.Count);
                 if (story.canContinue)
                 {
                     speakerName.text = "...";
                     AdvanceDialogue();
+                    
+                    // If there are choices, ...
+                    if (story.currentChoices.Count != 0)
+                    {
+                        StartCoroutine(ShowChoices());
+                    }
                 }
                 else
                 {
@@ -50,7 +59,6 @@ namespace Dialogue
         {
             dialogueFile = dialogueOwner.DialogueAsset;
             story = new Story(dialogueFile.text);
-            AdvanceDialogue();
         }
         
         /// <summary>
@@ -69,14 +77,9 @@ namespace Dialogue
             ParseTags();
             
             // Type sentence letter by letter
+            Debug.Log("Stop coroutine");
             StopAllCoroutines();
             StartCoroutine(TypeSentence(currentSentence));
-            
-            // If there are choices, ...
-            if (story.currentChoices.Count != 0)
-            {
-                StartCoroutine(ShowChoices());
-            }
         }
         
         /// <summary>
@@ -114,9 +117,9 @@ namespace Dialogue
             }
 
             optionPanel.SetActive(true);
-                
+            Debug.Log("Wait");
             yield return new WaitUntil(() => choiceSelected != null);
-
+            
             AdvanceFromDecision();
         }
         
@@ -127,6 +130,7 @@ namespace Dialogue
         public static void SetDecision(object element)
         {
             choiceSelected = (Choice) element;
+            Debug.Log(choiceSelected);
             story.ChooseChoiceIndex(choiceSelected.index);
         }
         
@@ -135,6 +139,7 @@ namespace Dialogue
         /// </summary>
         private void AdvanceFromDecision()
         {
+            Debug.Log("Advance");
             optionPanel.SetActive(false); // Deactivate the option panel
             for (int i = 0; i < optionPanel.transform.childCount; i++)
             {
@@ -163,6 +168,9 @@ namespace Dialogue
                     case "color":
                         SetTextColor(param);
                         break;
+                    case "sprite":
+                        SetPortraits(param);
+                        break;
                 }
             }
         }
@@ -184,6 +192,15 @@ namespace Dialogue
                 default:
                     Debug.LogError($"{color} is not available as a text color");
                     break;
+            }
+        }
+
+        private void SetPortraits(string filenames)
+        {
+            foreach (string filename in filenames.Split(','))
+            {
+                Sprite portrait = Resources.Load<Sprite>(filename);
+                Instantiate(portraitPrefab, portraitHolder.transform).GetComponent<Image>().sprite = portrait;
             }
         }
     }

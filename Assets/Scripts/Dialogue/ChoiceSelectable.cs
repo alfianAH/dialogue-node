@@ -14,6 +14,7 @@ namespace Dialogue
 
         public void Decide()
         {
+            Debug.Log($"Decide: {element}");
             DialogueManager.SetDecision(element);
         }
         
