@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 namespace Character
 {
@@ -36,11 +38,14 @@ namespace Character
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out var hit))
+                if(!IsPointerOverUiObject())
                 {
-                    Move(hit.point);
+                    Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out var hit))
+                    {
+                        Move(hit.point);
+                    }
                 }
             }
 
@@ -57,5 +62,17 @@ namespace Character
         {
             navPlayer.SetDestination(destination);
         }
+
+        private bool IsPointerOverUiObject()
+        {
+            PointerEventData eventData = new PointerEventData(EventSystem.current)
+            {
+                position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
+            };
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+            return results.Count > 0;
+        }
+        
     }
 }
