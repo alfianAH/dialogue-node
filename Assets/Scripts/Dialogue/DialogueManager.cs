@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 namespace Dialogue
 {
-    public class DialogueManager : MonoBehaviour
+    public class DialogueManager : SingletonBaseClass<DialogueManager>
     {
-        [SerializeField] private TextAsset dialogueFile;
+        private TextAsset dialogueFile;
         [SerializeField] private Text speakerName;
         [SerializeField] private Text dialogueText;
         [SerializeField] private ChoiceSelectable choiceButtonPrefab;
@@ -21,7 +21,6 @@ namespace Dialogue
 
         private void Start()
         {
-            story = new Story(dialogueFile.text);
             tags = new List<string>();
             choiceSelected = null;
         }
@@ -35,12 +34,6 @@ namespace Dialogue
                 {
                     speakerName.text = "...";
                     AdvanceDialogue();
-                    
-                    // If there are choices, ...
-                    if (story.currentChoices.Count != 0)
-                    {
-                        StartCoroutine(ShowChoices());
-                    }
                 }
                 else
                 {
@@ -50,11 +43,23 @@ namespace Dialogue
         }
         
         /// <summary>
+        /// Set dialogue file
+        /// </summary>
+        /// <param name="dialogueOwner"></param>
+        public void SetDialogue(DialogueOwner dialogueOwner)
+        {
+            dialogueFile = dialogueOwner.DialogueAsset;
+            story = new Story(dialogueFile.text);
+            AdvanceDialogue();
+        }
+        
+        /// <summary>
         /// Action when dialogue is finished
         /// </summary>
-        private static void FinishDialogue()
+        private void FinishDialogue()
         {
             Debug.Log("End of Dialogue");
+            gameObject.SetActive(false);
         }
 
         private void AdvanceDialogue()
@@ -66,6 +71,12 @@ namespace Dialogue
             // Type sentence letter by letter
             StopAllCoroutines();
             StartCoroutine(TypeSentence(currentSentence));
+            
+            // If there are choices, ...
+            if (story.currentChoices.Count != 0)
+            {
+                StartCoroutine(ShowChoices());
+            }
         }
         
         /// <summary>
